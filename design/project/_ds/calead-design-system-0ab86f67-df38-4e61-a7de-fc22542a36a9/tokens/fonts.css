@@ -1,0 +1,5 @@
+/* CaLead webfonts.
+   No brand font files were supplied. These are Google Fonts substitutions:
+   Geist (display/UI), Public Sans (body), IBM Plex Mono (data/labels).
+   Replace the @import below with local @font-face rules if licensed files arrive. */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Public+Sans:ital,wght@0,300..700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap");

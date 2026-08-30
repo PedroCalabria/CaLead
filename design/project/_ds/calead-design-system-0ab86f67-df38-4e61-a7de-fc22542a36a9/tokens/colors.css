@@ -1,0 +1,66 @@
+/* CaLead color system — cool architectural neutrals + one signal accent.
+   Neutrals do the work; soft blue is a signal, never a surface. */
+:root {
+  /* Stone / graphite ramp (base) */
+  --stone-000: #FFFFFF;
+  --stone-050: #FAFAF8;
+  --stone-100: #F2F2EE;
+  --stone-200: #E6E6E0;
+  --stone-300: #D2D2CA;
+  --stone-400: #A9A9A0;
+  --stone-500: #7C7C74;
+  --stone-600: #565651;
+  --stone-700: #3A3A36;
+  --stone-800: #232322;
+  --stone-900: #141414;
+  --stone-950: #0B0B0B;
+
+  /* Signal accent */
+  --blue-100: #EEF3FF;
+  --blue-200: #D8E4FF;
+  --blue-300: #BCD1FB;
+  --blue-400: #9BBBF7;
+  --blue-500: #6F9DE8;
+  --blue-600: #4A79C4;
+  --blue-700: #2D5490;
+
+  /* Semantic hues (muted, cool) */
+  --info-500: #2C5CE6;
+  --info-100: #E4EAFF;
+  --positive-500: #1E7A52;
+  --positive-100: #DDF2E7;
+  --warn-500: #A56B12;
+  --warn-100: #FBEED6;
+  --critical-500: #B4321F;
+  --critical-100: #FCE5E0;
+
+  /* ---- Semantic aliases ---- */
+  --surface-page: var(--stone-050);
+  --surface-card: var(--stone-000);
+  --surface-sunken: var(--stone-100);
+  --surface-inverse: var(--stone-950);
+  --surface-inverse-raised: var(--stone-800);
+  --surface-accent: var(--blue-400);
+  --surface-accent-soft: var(--blue-100);
+  --surface-hover: var(--stone-100);
+  --surface-active: var(--stone-200);
+
+  --text-strong: var(--stone-950);
+  --text-body: var(--stone-700);
+  --text-muted: var(--stone-500);
+  --text-faint: var(--stone-400);
+  --text-on-inverse: var(--stone-050);
+  --text-on-inverse-muted: var(--stone-400);
+  --text-on-accent: var(--stone-950);
+  --text-link: var(--stone-950);
+
+  --border-hairline: var(--stone-200);
+  --border-default: var(--stone-300);
+  --border-strong: var(--stone-900);
+  --border-inverse: rgba(255, 255, 255, 0.14);
+  --border-focus: var(--stone-950);
+
+  --score-hot: var(--blue-500);
+  --score-warm: var(--stone-400);
+  --score-cold: var(--stone-200);
+}

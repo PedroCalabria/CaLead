@@ -1,0 +1,198 @@
+/* CaLead webfonts — Geist (display/UI), Public Sans (body), IBM Plex Mono
+   (data/labels), as specified by the design system. Swap this @import for
+   local @font-face rules once licensed files are available. */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Public+Sans:ital,wght@0,300..700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+@import "../styles/tokens.css" layer(base);
+
+/* ------------------------------------------------------------------
+   Design-system tokens exposed to Tailwind.
+   The CSS custom properties in styles/tokens.css stay the source of
+   truth; this block only makes them reachable as utilities
+   (bg-surface-card, text-muted, rounded-card, font-mono, ...).
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-stone-000: var(--stone-000);
+  --color-stone-050: var(--stone-050);
+  --color-stone-100: var(--stone-100);
+  --color-stone-200: var(--stone-200);
+  --color-stone-300: var(--stone-300);
+  --color-stone-400: var(--stone-400);
+  --color-stone-500: var(--stone-500);
+  --color-stone-600: var(--stone-600);
+  --color-stone-700: var(--stone-700);
+  --color-stone-800: var(--stone-800);
+  --color-stone-900: var(--stone-900);
+  --color-stone-950: var(--stone-950);
+
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+  --color-blue-700: var(--blue-700);
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-card: var(--surface-card);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-inverse-raised: var(--surface-inverse-raised);
+  --color-surface-accent: var(--surface-accent);
+  --color-surface-accent-soft: var(--surface-accent-soft);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  --color-ink: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-on-inverse: var(--text-on-inverse);
+  --color-on-accent: var(--text-on-accent);
+
+  --color-hairline: var(--border-hairline);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+
+  /* App-surface palette. The product screens in the design use a
+     teal signal and a slightly cooler grey than the marketing site. */
+  --color-app-teal: var(--app-teal);
+  --color-app-teal-soft: var(--app-teal-soft);
+  --color-app-line: var(--app-line);
+  --color-app-line-soft: var(--app-line-soft);
+  --color-app-ink: var(--app-ink);
+  --color-app-dim: var(--app-dim);
+  --color-app-faint: var(--app-faint);
+
+  --font-display: var(--font-display);
+  --font-text: var(--font-text);
+  --font-mono: var(--font-mono);
+
+  --radius-2: var(--radius-2);
+  --radius-4: var(--radius-4);
+  --radius-6: var(--radius-6);
+  --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+
+  --shadow-raised: var(--shadow-raised);
+  --shadow-float: var(--shadow-float);
+  --shadow-dialog: var(--shadow-dialog);
+}
+
+/* ------------------------------------------------------------------
+   App-screen palette (the product UI in the design uses these
+   literal values rather than the marketing tokens).
+   ------------------------------------------------------------------ */
+:root {
+  --app-teal: #0a6a72;
+  --app-teal-soft: #eef2f2;
+  --app-line: #e2e5e5;
+  --app-line-soft: #f2f3f3;
+  --app-ink: #13181a;
+  --app-dim: #59646a;
+  --app-faint: #8b959a;
+  --app-page: #f4f5f5;
+
+  --band-strong: #2c6a4c;
+  --band-strong-bg: #e9f2ec;
+  --band-possible: #0a6a72;
+  --band-possible-bg: #e6f0f1;
+  --band-poor: #9e3327;
+  --band-poor-bg: #f8ece9;
+  --band-none: #8b959a;
+  --band-none-bg: #f2f3f3;
+  --band-warn: #9a6410;
+  --band-warn-bg: #fdf7ec;
+}
+
+@layer components {
+  /* Typography roles as utilities — the design expresses these as the
+     CSS `font` shorthand, which has no Tailwind equivalent. */
+  .type-hero { font: var(--type-hero); letter-spacing: var(--tracking-display); }
+  .type-display { font: var(--type-display); letter-spacing: var(--tracking-display); }
+  .type-h1 { font: var(--type-h1); letter-spacing: var(--tracking-heading); }
+  .type-h2 { font: var(--type-h2); letter-spacing: var(--tracking-heading); }
+  .type-h3 { font: var(--type-h3); letter-spacing: var(--tracking-heading); }
+  .type-h4 { font: var(--type-h4); letter-spacing: var(--tracking-heading); }
+  .type-body { font: var(--type-body); letter-spacing: var(--tracking-body); }
+  .type-body-lead { font: var(--type-body-lead); letter-spacing: var(--tracking-body); }
+  .type-body-small { font: var(--type-body-small); letter-spacing: var(--tracking-body); }
+  .type-ui { font: var(--type-ui); letter-spacing: -0.01em; }
+  .type-data { font: var(--type-data); letter-spacing: var(--tracking-mono); }
+  .type-label {
+    font: var(--type-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@layer base {
+  /* The prototype leaves links unstyled until hover; the design system's
+     own base.css underlines them, so override it here (still in the base
+     layer, so Tailwind utilities keep winning). */
+  a {
+    color: var(--text-link);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--text-strong);
+    text-decoration: underline;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion used by the prototype.
+   ------------------------------------------------------------------ */
+@keyframes ib-shimmer { 0% { background-position: -320px 0 } 100% { background-position: 320px 0 } }
+@keyframes ib-pulse { 0%, 100% { opacity: .35 } 50% { opacity: 1 } }
+@keyframes ib-rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes ib-fill { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+
+.ib-rise { animation: ib-rise .3s ease both; }
+.ib-fill { transform-origin: bottom; animation: ib-fill .5s ease both; }
+.ib-pulse { animation: ib-pulse 1.4s ease-in-out infinite; }
+.ib-shimmer {
+  background: linear-gradient(90deg, #eef0f0 25%, #f7f8f8 37%, #eef0f0 63%);
+  background-size: 320px 100%;
+  animation: ib-shimmer 1.3s linear infinite;
+}
+
+/* Marketing nav: transparent over the dark hero, glass once scrolled. */
+.ib-nav {
+  color: var(--stone-050);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard);
+}
+.ib-nav[data-stuck="true"] {
+  color: var(--text-strong);
+  background: var(--glass-panel);
+  backdrop-filter: var(--blur-panel);
+  border-bottom-color: var(--border-hairline);
+}
+
+/* Scroll reveal. Elements start hidden only once JS has armed them, so
+   the page is readable with JS disabled. */
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+html.reveal-ready [data-reveal] { opacity: 0; transform: translateY(18px); }
+html.reveal-ready [data-reveal][data-in="true"] { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+  html.reveal-ready [data-reveal] { opacity: 1; transform: none; }
+}
+
+input, select, textarea { font-family: inherit; font-size: var(--size-body-m); color: var(--text-strong); }
+button { font-family: inherit; font-size: inherit; }

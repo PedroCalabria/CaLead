@@ -1,0 +1,20 @@
+/* Architectural corners: mostly small radii, pills only for chips and icon buttons. */
+:root {
+  --radius-0: 0px;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+  --radius-pill: 999px;
+
+  --radius-control: var(--radius-6);
+  --radius-card: var(--radius-10);
+  --radius-panel: var(--radius-14);
+  --radius-media: var(--radius-14);
+  --radius-chip: var(--radius-pill);
+
+  --border-width-hairline: 1px;
+  --border-width-strong: 1.5px;
+}

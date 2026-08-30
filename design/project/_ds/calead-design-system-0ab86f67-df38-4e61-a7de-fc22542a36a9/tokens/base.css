@@ -1,0 +1,16 @@
+/* Minimal global base. Consumers get resets, type defaults and link styling. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface-page); color: var(--text-body); font: var(--type-body); letter-spacing: var(--tracking-body); text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--text-strong); font-family: var(--font-display); letter-spacing: var(--tracking-heading); font-weight: var(--weight-medium); }
+p { margin: 0; }
+a { color: var(--text-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--stone-300); transition: var(--transition-control); }
+a:hover { text-decoration-color: var(--blue-500); }
+a:active { color: var(--stone-700); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-2); }
+button { font: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--blue-300); color: var(--stone-950); }
+.ca-mono-label { font: var(--type-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); }
+.ca-hairline { border: 0; border-top: 1px solid var(--border-hairline); margin: 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
