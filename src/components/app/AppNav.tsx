@@ -50,7 +50,7 @@ export function AppNav() {
               color: "var(--app-ink)",
             }}
           >
-            Icebreak
+            CaLead
           </span>
         </button>
 

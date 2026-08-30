@@ -1,4 +1,4 @@
-# Icebreak (CaLead)
+# CaLead
 
 Plataforma de qualificação de leads para times de SDR. Lê o site da empresa e o
 LinkedIn do contato, pontua o lead contra os critérios de ICP do time, mostra a

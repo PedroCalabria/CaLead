@@ -22,7 +22,7 @@ export function LandingNav() {
           className="type-h3 !text-[22px] text-inherit no-underline"
           style={{ letterSpacing: "-0.035em" }}
         >
-          Icebreak
+          CaLead
         </Link>
         <nav className="flex items-center gap-5">
           <a href="#how" className="type-ui hidden text-inherit no-underline md:inline">
