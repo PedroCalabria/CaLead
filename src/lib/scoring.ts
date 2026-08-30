@@ -36,22 +36,24 @@ export interface Band {
   label: string;
 }
 
-/** 1–10 fit score to its colour band. */
+/** The unfilled part of any fit meter, product screens and landing alike. */
+export const METER_TRACK = "#dfe3e3";
+
+/** 0–100 fit score to its colour band. */
 export function band(score: number | null | undefined): Band {
   if (score === null || score === undefined) {
     return { color: "#8b959a", bg: "#f2f3f3", label: "Not scored" };
   }
-  if (score >= 8) return { color: "#2c6a4c", bg: "#e9f2ec", label: "Strong fit" };
-  if (score >= 5) return { color: "#0a6a72", bg: "#e6f0f1", label: "Possible fit" };
+  if (score >= 80) return { color: "#2c6a4c", bg: "#e9f2ec", label: "Strong fit" };
+  if (score >= 50) return { color: "#0a6a72", bg: "#e6f0f1", label: "Possible fit" };
   return { color: "#9e3327", bg: "#f8ece9", label: "Poor fit" };
 }
 
-/** Ten segments, filled up to the score, in the band colour. */
+/** Ten segments worth ten points each, filled up to the score. */
 export function ticks(score: number | null | undefined): string[] {
   const b = band(score);
-  return Array.from({ length: 10 }, (_, i) =>
-    i < (score ?? 0) ? b.color : "#dfe3e3",
-  );
+  const filled = Math.round((score ?? 0) / 10);
+  return Array.from({ length: 10 }, (_, i) => (i < filled ? b.color : METER_TRACK));
 }
 
 /** Total weight available across enabled, non-disqualifying criteria. */
@@ -61,13 +63,16 @@ export function weightBudget(criteria: Criterion[]): number {
     .reduce((sum, c) => sum + (c.weight ?? 0), 0);
 }
 
+/** What a met disqualifier forces the score down to. */
+export const DISQUALIFIED_SCORE = 20;
+
 export interface ScoreOutcome {
   score: number;
   disqualifiedBy: string | null;
 }
 
 /**
- * Weighted 1–10 score. A met disqualifier short-circuits to 2 whatever
+ * Weighted 0–100 score. A met disqualifier short-circuits to 20 whatever
  * the rest of the criteria say.
  */
 export function scoreFrom(
@@ -78,7 +83,7 @@ export function scoreFrom(
   const triggered = enabled
     .filter((c) => c.type === "disqualifier")
     .find((c) => results[c.name] === "met");
-  if (triggered) return { score: 2, disqualifiedBy: triggered.name };
+  if (triggered) return { score: DISQUALIFIED_SCORE, disqualifiedBy: triggered.name };
 
   const weighted = enabled.filter((c) => c.type !== "disqualifier");
   const total = weighted.reduce((sum, c) => sum + (c.weight ?? 0), 0) || 1;
@@ -89,7 +94,7 @@ export function scoreFrom(
   }, 0);
 
   return {
-    score: Math.max(1, Math.min(10, Math.round(1 + 9 * (earned / total)))),
+    score: Math.max(0, Math.min(100, Math.round(100 * (earned / total)))),
     disqualifiedBy: null,
   };
 }

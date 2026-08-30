@@ -25,7 +25,7 @@ export function filterLeads(leads: Lead[], filters: GridFilters): Lead[] {
     }
     if (filters.niches.length && !filters.niches.includes(nicheGroup(lead.niche))) return false;
     if (filters.statuses.length && !filters.statuses.includes(lead.status)) return false;
-    if (filters.minScore > 1) {
+    if (filters.minScore > 0) {
       if (lead.icpFitScore === null || lead.icpFitScore === undefined) return false;
       if (lead.icpFitScore < filters.minScore) return false;
     }

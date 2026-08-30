@@ -4,11 +4,13 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
   type ReactNode,
 } from "react";
+import { isMockMode } from "@/lib/client-mode";
 import {
   criteria as seedCriteria,
   guidance as seedGuidance,
@@ -55,7 +57,7 @@ export interface ConfirmDialog {
 
 const DEFAULT_FILTERS: GridFilters = {
   search: "",
-  minScore: 1,
+  minScore: 0,
   niches: [],
   statuses: [],
   sortKey: "score",
@@ -68,6 +70,7 @@ const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 interface StoreValue {
   leads: Lead[];
   addLead: (lead: Lead) => void;
+  replaceLead: (lead: Lead) => void;
 
   criteria: Criterion[];
   setCriteria: (next: Criterion[] | ((prev: Criterion[]) => Criterion[])) => void;
@@ -75,6 +78,8 @@ interface StoreValue {
   guidance: Guidance;
   setGuidance: (patch: Partial<Guidance>) => void;
   savedGuidance: Guidance;
+  /** Label of the ICP version new leads are scored against, e.g. "v5". */
+  icpLabel: string;
   starters: StarterCriterion[];
   sample: SampleLead;
   dirty: boolean;
@@ -128,6 +133,42 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [toast, setToast] = useState<string | null>(null);
   const [dialog, setDialog] = useState<ConfirmDialog | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [icpLabel, setIcpLabel] = useState("v4");
+
+  // Hydrate from the API. In mock mode the seed data is the whole product, so
+  // nothing is fetched and no keys are needed.
+  useEffect(() => {
+    if (isMockMode()) return;
+    let live = true;
+
+    void (async () => {
+      try {
+        const [icpResponse, leadsResponse] = await Promise.all([
+          fetch("/api/icp", { cache: "no-store" }),
+          fetch("/api/leads", { cache: "no-store" }),
+        ]);
+
+        if (live && icpResponse.ok) {
+          const icp = await icpResponse.json();
+          setCriteriaState(clone(icp.criteria));
+          setSavedCriteria(clone(icp.criteria));
+          setGuidanceState({ ...icp.guidance });
+          setSavedGuidance({ ...icp.guidance });
+          setIcpLabel(icp.label);
+        }
+        if (live && leadsResponse.ok) {
+          const body = await leadsResponse.json();
+          setLeads(body.leads);
+        }
+      } catch {
+        // Leave the seed data in place; the screens stay usable offline.
+      }
+    })();
+
+    return () => {
+      live = false;
+    };
+  }, []);
 
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -168,7 +209,27 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const saveCriteria = useCallback(() => {
     setSavedCriteria(clone(criteria));
     setSavedGuidance({ ...guidance });
-    showToast("Criteria saved — new leads use v5");
+
+    if (isMockMode()) {
+      showToast("Criteria saved — new leads use the updated set");
+      return;
+    }
+
+    void (async () => {
+      try {
+        const response = await fetch("/api/icp", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ criteria, guidance }),
+        });
+        if (!response.ok) throw new Error("save failed");
+        const saved = await response.json();
+        setIcpLabel(saved.label);
+        showToast(`Criteria saved — new leads use ${saved.label}`);
+      } catch {
+        showToast("Criteria saved locally — the server did not accept the change");
+      }
+    })();
   }, [criteria, guidance, showToast]);
 
   const discardCriteria = useCallback(() => {
@@ -187,19 +248,25 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     !!filters.search.trim() ||
     filters.niches.length > 0 ||
     filters.statuses.length > 0 ||
-    filters.minScore > 1;
+    filters.minScore > 0;
 
   const anyHidden = hidden.fullName || hidden.email || hidden.phone;
 
   const value: StoreValue = {
     leads,
     addLead: useCallback((lead: Lead) => setLeads((prev) => [lead, ...prev]), []),
+    replaceLead: useCallback(
+      (lead: Lead) =>
+        setLeads((prev) => prev.map((existing) => (existing.id === lead.id ? lead : existing))),
+      [],
+    ),
     criteria,
     setCriteria,
     savedCriteria,
     guidance,
     setGuidance,
     savedGuidance,
+    icpLabel,
     starters: starterCriteria,
     sample: sampleLead,
     dirty,

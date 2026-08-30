@@ -10,7 +10,7 @@ interface ScoreTicksProps {
   animate?: boolean;
 }
 
-/** The ten-segment 1–10 fit meter used across the product screens. */
+/** The ten-segment 0–100 fit meter used across the product screens. */
 export function ScoreTicks({
   score,
   width,

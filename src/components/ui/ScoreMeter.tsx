@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { METER_TRACK, band } from "@/lib/scoring";
 
 interface ScoreMeterProps {
   /** 0–100. */
@@ -20,8 +21,7 @@ export function ScoreMeter({
 }: ScoreMeterProps) {
   const clamped = Math.max(0, Math.min(100, value));
   const filled = Math.round((clamped / 100) * segments);
-  const tone =
-    value >= 75 ? "var(--score-hot)" : value >= 45 ? "var(--score-warm)" : "var(--score-cold)";
+  const tone = band(clamped).color;
   const height = size === "sm" ? 6 : size === "lg" ? 14 : 10;
 
   return (
@@ -30,7 +30,7 @@ export function ScoreMeter({
         <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
           {label ? <span className="type-label">{label}</span> : null}
           {showValue ? (
-            <span className="type-data" style={{ color: "var(--text-strong)" }}>
+            <span className="type-data" style={{ color: tone }}>
               {Math.round(value)}
             </span>
           ) : null}
@@ -44,8 +44,9 @@ export function ScoreMeter({
               flex: 1,
               height,
               borderRadius: "var(--radius-2)",
-              background: i < filled ? tone : "var(--stone-200)",
+              background: i < filled ? tone : METER_TRACK,
               transition: "background-color var(--dur-base) var(--ease-standard)",
+              transitionDelay: `${i * 30}ms`,
             }}
           />
         ))}

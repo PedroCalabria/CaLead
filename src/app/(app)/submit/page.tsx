@@ -8,7 +8,6 @@ import {
   initialSteps,
   runScoring,
   type ScoringStep,
-  type Simulation,
 } from "@/lib/mock-api";
 import { normaliseUrl, validateAll, validateField } from "@/lib/validation";
 import type { Lead, LeadSubmission, SubmissionField } from "@/lib/types";
@@ -40,8 +39,8 @@ export default function SubmitPage() {
   const [form, setForm] = useState<LeadSubmission>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<SubmissionField, string>>>({});
   const [formError, setFormError] = useState<string | null>(null);
+  const [runError, setRunError] = useState<string | null>(null);
   const [cc, setCc] = useState("+1");
-  const [simulation, setSimulation] = useState<Simulation>("scored");
 
   const [phase, setPhase] = useState<Phase>("idle");
   const [steps, setSteps] = useState<ScoringStep[]>([]);
@@ -90,18 +89,22 @@ export default function SubmitPage() {
     }
 
     setFormError(null);
+    setRunError(null);
     setSteps(initialSteps(form));
     setPhase("processing");
 
     cancelRef.current = runScoring(
       form,
-      simulation,
       (index, patch) =>
         setSteps((prev) => prev.map((s, i) => (i === index ? { ...s, ...patch } : s))),
       (lead) => {
         addLead(lead);
         setNewLead(lead);
         setPhase("done");
+      },
+      (message) => {
+        setRunError(message);
+        setPhase("idle");
       },
     );
   };
@@ -111,6 +114,7 @@ export default function SubmitPage() {
     setForm(EMPTY);
     setErrors({});
     setFormError(null);
+    setRunError(null);
     setPhase("idle");
     setSteps([]);
     setNewLead(null);
@@ -123,16 +127,13 @@ export default function SubmitPage() {
           form={form}
           errors={errors}
           formError={formError}
+          runError={runError}
           cc={cc}
-          simulation={simulation}
           onCc={(value) => {
             setCc(value);
-            setForm((prev) => ({
-              ...prev,
-              phone: prev.phone.trim() ? prev.phone : `${value} `,
-            }));
+            const rest = form.phone.trim().replace(/^\+\d+[\s-]*/, "");
+            onChange("phone", rest ? `${value} ${rest}` : `${value} `);
           }}
-          onSimulation={setSimulation}
           onChange={onChange}
           onBlur={onBlur}
           onSubmit={submit}
@@ -181,10 +182,9 @@ interface IdleFormProps {
   form: LeadSubmission;
   errors: Partial<Record<SubmissionField, string>>;
   formError: string | null;
+  runError: string | null;
   cc: string;
-  simulation: Simulation;
   onCc: (value: string) => void;
-  onSimulation: (value: Simulation) => void;
   onChange: (field: SubmissionField, value: string) => void;
   onBlur: (field: SubmissionField) => void;
   onSubmit: () => void;
@@ -194,10 +194,9 @@ function IdleForm({
   form,
   errors,
   formError,
+  runError,
   cc,
-  simulation,
   onCc,
-  onSimulation,
   onChange,
   onBlur,
   onSubmit,
@@ -225,6 +224,18 @@ function IdleForm({
           className="mb-5 rounded border border-[#f0d3ce] border-l-[3px] border-l-[#9e3327] bg-[#fdf1ef] px-3.5 py-3 text-[13px] text-[#7d2b21]"
         >
           {formError}
+        </div>
+      ) : null}
+
+      {runError ? (
+        <div
+          role="alert"
+          className="mb-5 rounded border border-[#f0e2c6] border-l-[3px] border-l-[#9a6410] bg-[#fdf7ec] px-3.5 py-3 text-[13px] text-[#7a4f0c]"
+        >
+          <strong className="font-medium">The run did not finish.</strong> {runError}
+          <div className="mt-1 text-[var(--app-faint)]">
+            The details are unchanged — try again, or score a different lead.
+          </div>
         </div>
       ) : null}
 
@@ -347,41 +358,12 @@ function IdleForm({
             Score this lead
           </button>
           <div className="mt-3 text-[13px] text-[var(--app-faint)]">
-            We read two public pages — the website and the LinkedIn page — and score the lead
-            against your seven active criteria. It takes about five seconds. Nothing is sent
-            to the lead.
+            We read the company website and their LinkedIn, then score the lead against your
+            active ICP criteria. It usually takes a minute or two. Nothing is sent to the lead.
           </div>
         </div>
       </form>
 
-      <div className="mt-[18px] flex flex-wrap items-center gap-2.5 text-xs text-[var(--app-faint)]">
-        <span className="font-mono uppercase tracking-[0.06em]">Demo</span>
-        {(
-          [
-            ["scored", "Both sources readable"],
-            ["partial", "LinkedIn unreachable"],
-          ] as const
-        ).map(([value, label]) => (
-          <button
-            key={value}
-            type="button"
-            onClick={() => onSimulation(value)}
-            aria-pressed={simulation === value}
-            style={{
-              height: 28,
-              padding: "0 10px",
-              background: simulation === value ? "var(--app-teal-soft)" : "#fff",
-              color: simulation === value ? "var(--app-teal)" : "var(--app-dim)",
-              border: "1px solid #dde0e0",
-              borderRadius: 3,
-              cursor: "pointer",
-              fontSize: 12,
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
@@ -498,7 +480,7 @@ function Done({
           letterSpacing: "-0.01em",
         }}
       >
-        {partial ? "Scored, with one source missing" : `Scored ${lead.icpFitScore} out of 10`}
+        {partial ? "Scored, with one source missing" : `Scored ${lead.icpFitScore} out of 100`}
       </h1>
       <p className="mt-2.5 mb-6 text-[var(--app-dim)]">
         {lead.fullName} at {lead.companyName} · scored in{" "}
@@ -528,7 +510,7 @@ function Done({
               }}
             >
               {lead.icpFitScore}
-              <span className="text-[15px] text-[var(--app-faint)]">/10</span>
+              <span className="text-[15px] text-[var(--app-faint)]">/100</span>
             </div>
             <div className="text-xs font-medium" style={{ color: b.color }}>
               {b.label}

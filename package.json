@@ -6,22 +6,38 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "tsx --test scripts/test-*.ts",
+    "try-agent": "tsx scripts/try-agent.ts",
+    "seed": "tsx scripts/seed.ts",
+    "db:push": "drizzle-kit push",
+    "check": "tsx scripts/check-setup.ts",
+    "migrate-scores": "tsx scripts/migrate-scores.ts"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.57",
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/functions": "^3.9.5",
+    "ai": "^7.0.84",
+    "apify-client": "^2.25.0",
+    "drizzle-orm": "^0.45.2",
     "lucide-react": "^1.37.0",
     "next": "^16.3.3",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.3.3",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
     "typescript": "^5.9.0"
   }
 }

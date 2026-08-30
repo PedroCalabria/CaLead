@@ -177,9 +177,8 @@ export function LeadsTable({ rows, onCopy, density }: LeadsTableProps) {
                     target="_blank"
                     rel="noreferrer"
                     onClick={stop}
-                    className="inline-flex items-center gap-[7px] font-mono text-xs"
+                    className="inline-flex items-center font-mono text-xs"
                   >
-                    <span className="h-3.5 w-3.5 rounded-[3px] border border-[#dde5e5] bg-[#eef2f2]" />
                     {domainOf(lead.companyWebsite)}
                   </a>
                   <a

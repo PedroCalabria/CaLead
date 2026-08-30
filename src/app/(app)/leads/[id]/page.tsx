@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { copyToClipboard, domainOf, formatDate, formatTime } from "@/lib/format";
 import { RESULT_LABEL, TYPE_LABEL, band } from "@/lib/scoring";
 import { useStore } from "@/state/store";
+import { isMockMode } from "@/lib/client-mode";
 
 export default function LeadDetailPage() {
   const params = useParams<{ id: string }>();
@@ -21,6 +22,7 @@ export default function LeadDetailPage() {
     copied,
     markCopied,
     showToast,
+    replaceLead,
   } = useStore();
 
   const [activeCriterion, setActiveCriterion] = useState<string | null>(null);
@@ -64,11 +66,38 @@ export default function LeadDetailPage() {
   const isCopied = copied === `detail-${lead.id}`;
 
   const rescore = () => {
+    if (isMockMode()) {
+      setBusy(true);
+      busyTimer.current = setTimeout(() => {
+        setBusy(false);
+        showToast("Lead re-scored — no change to the fit score");
+      }, 2600);
+      return;
+    }
+
     setBusy(true);
-    busyTimer.current = setTimeout(() => {
-      setBusy(false);
-      showToast("Lead re-scored — no change to the fit score");
-    }, 2600);
+    void (async () => {
+      const previous = lead.icpFitScore;
+      try {
+        const response = await fetch(`/api/leads/${lead.id}/rescore`, { method: "POST" });
+        const body = await response.json();
+        if (!response.ok) {
+          showToast(body.error ?? "Re-score failed.");
+          return;
+        }
+        replaceLead(body.lead);
+        const next = body.lead.icpFitScore;
+        showToast(
+          next === previous
+            ? "Lead re-scored — no change to the fit score"
+            : `Lead re-scored — fit score moved from ${previous} to ${next}`,
+        );
+      } catch {
+        showToast("Re-score failed — could not reach the server.");
+      } finally {
+        setBusy(false);
+      }
+    })();
   };
 
   const gridStyle = isMobile
@@ -167,7 +196,7 @@ export default function LeadDetailPage() {
                 }}
               >
                 {lead.icpFitScore}
-                <span className="text-[20px] text-[var(--app-faint)]">/10</span>
+                <span className="text-[20px] text-[var(--app-faint)]">/100</span>
               </div>
               <ScoreTicks score={lead.icpFitScore} width={6} height={56} gap={3} />
             </div>

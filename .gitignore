@@ -27,3 +27,4 @@ Thumbs.db
 
 # Claude Code local settings (machine-specific; skills stay tracked)
 .claude/settings.local.json
+fixtures/*.json

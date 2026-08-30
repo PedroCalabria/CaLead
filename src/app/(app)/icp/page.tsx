@@ -194,7 +194,7 @@ export default function IcpPage() {
 
               {criteria.map((c) => {
                 const isDq = c.type === "disqualifier";
-                const points = isDq || !budget ? 0 : ((c.weight ?? 0) / budget) * 9;
+                const points = isDq || !budget ? 0 : ((c.weight ?? 0) / budget) * 100;
                 const inlineOpen = !isMobile && editingId === c.id;
 
                 return (
@@ -244,9 +244,9 @@ export default function IcpPage() {
                         <div className="mt-[3px] text-xs text-[var(--app-faint)]">
                           {TYPE_LABEL[c.type]} · {SOURCE_LABEL[c.source]} ·{" "}
                           {isDq
-                            ? "Forces a score of 2 when met"
+                            ? "Forces a score of 20 when met"
                             : c.enabled
-                              ? `Worth up to ${points.toFixed(1)} of 10 points`
+                              ? `Worth up to ${Math.round(points)} of 100 points`
                               : "Disabled — no effect on scores"}
                         </div>
                         {c.description ? (
@@ -317,7 +317,7 @@ export default function IcpPage() {
               {activeDqs.length
                 ? `${activeDqs.length === 1 ? "One disqualifier is active: " : `${activeDqs.length} disqualifiers are active: `}${activeDqs
                     .map((c) => c.name)
-                    .join(", ")}. Any one of them forces a score of 2, whatever the rest of the criteria say.`
+                    .join(", ")}. Any one of them forces a score of 20, whatever the rest of the criteria say.`
                 : "No disqualifiers are active. Every criterion contributes proportionally."}
             </p>
           </div>
@@ -416,7 +416,7 @@ export default function IcpPage() {
               }}
             >
               {preview.score}
-              <span className="text-[15px] text-[var(--app-faint)]">/10</span>
+              <span className="text-[15px] text-[var(--app-faint)]">/100</span>
             </div>
             <ScoreTicks score={preview.score} width={5} height={34} gap={2} />
           </div>
@@ -577,7 +577,11 @@ function IconBtn({
       onClick={onClick}
       title={title}
       aria-label={title}
-      className={desktopOnly ? "hidden md:inline-flex" : undefined}
+      className={
+        desktopOnly
+          ? "hidden md:inline-flex md:items-center md:justify-center"
+          : "inline-flex items-center justify-center"
+      }
       style={{
         height: 30,
         width: wide ? undefined : 30,

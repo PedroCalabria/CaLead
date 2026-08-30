@@ -81,7 +81,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://kelpanalytics.com', linkedinUrl: 'https://linkedin.com/company/kelp-analytics',
     companyName: 'Kelp Analytics', role: 'VP Marketing', niche: 'B2B SaaS — supply chain analytics',
     primaryService: 'Inventory forecasting for mid-market distributors',
-    icpFitScore: 10, status: 'scored', scoredAt: '2026-08-28T09:41:00Z', durationMs: 5100, criteriaVersion: 'v4',
+    icpFitScore: 96, status: 'scored', scoredAt: '2026-08-28T09:41:00Z', durationMs: 5100, criteriaVersion: 'v4',
     icpFitReason: 'Every must-have is met outright: 88 employees, sells only to distributors, and the homepage opens on the exact spreadsheet workflow we replace. Two open SDR roles and a named outbound team on top.',
     icebreaker: 'Your homepage opens with "our customers were forecasting in a 40-tab spreadsheet" — which is roughly what your two new SDRs are about to do with lead research. Worth comparing notes before they ramp?',
     criteriaResults: [
@@ -105,7 +105,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://northlight.io', linkedinUrl: 'https://linkedin.com/company/northlight',
     companyName: 'Northlight', role: 'Head of Growth', niche: 'B2B SaaS — HR tech',
     primaryService: 'Applicant tracking for mid-market teams',
-    icpFitScore: 9, status: 'scored', scoredAt: '2026-08-27T14:22:00Z', durationMs: 4700, criteriaVersion: 'v4',
+    icpFitScore: 88, status: 'scored', scoredAt: '2026-08-27T14:22:00Z', durationMs: 4700, criteriaVersion: 'v4',
     icpFitReason: 'Mid-market SaaS with 40–60 employees, hiring 3 SDRs right now, and their site leads with a manual-process pain point our product removes.',
     icebreaker: "Saw you're hiring three SDRs at once off the back of the Series A — that's a lot of ramp happening in parallel. Curious how you're handling lead research for the new reps before they hit quota.",
     criteriaResults: [
@@ -129,7 +129,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://cadencefreight.com', linkedinUrl: 'https://linkedin.com/company/cadence-freight',
     companyName: 'Cadence Freight', role: 'VP Revenue', niche: 'Logistics — freight brokerage',
     primaryService: 'Digital freight brokerage for regional carriers',
-    icpFitScore: 8, status: 'scored', scoredAt: '2026-08-27T11:05:00Z', durationMs: 5400, criteriaVersion: 'v4',
+    icpFitScore: 82, status: 'scored', scoredAt: '2026-08-27T11:05:00Z', durationMs: 5400, criteriaVersion: 'v4',
     icpFitReason: 'Ops-heavy team of 120 selling to carriers, and the site names manual quoting as the problem they exist to fix. No sign of an outbound motion yet, which is why this is an 8 and not a 9.',
     icebreaker: 'Your quoting page says brokers still rebuild the same quote four times a day — I imagine the research your reps do before a cold call looks similar. How are you sourcing carrier context today?',
     criteriaResults: [
@@ -152,7 +152,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://cobaltledger.com', linkedinUrl: 'https://linkedin.com/company/cobalt-ledger',
     companyName: 'Cobalt Ledger', role: 'Head of Revenue', niche: 'Fintech — accounting automation',
     primaryService: 'Month-end close automation for finance teams',
-    icpFitScore: 8, status: 'scored', scoredAt: '2026-08-26T16:48:00Z', durationMs: 4900, criteriaVersion: 'v4',
+    icpFitScore: 82, status: 'scored', scoredAt: '2026-08-26T16:48:00Z', durationMs: 4900, criteriaVersion: 'v4',
     icpFitReason: 'Clean must-have profile at 64 employees, and the whole site is built around a manual close process. Hiring is quiet, so the nice-to-haves only half land.',
     icebreaker: 'The "day 9 close" number on your homepage is a good hook — it also means your buyers are the same finance leads everyone else is emailing in week one. Curious what you do to get in earlier.',
     criteriaResults: [
@@ -174,7 +174,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://haldencoatings.com', linkedinUrl: 'https://linkedin.com/company/halden-coatings',
     companyName: 'Halden Coatings', role: 'Sales Director', niche: 'Manufacturing — industrial coatings',
     primaryService: 'Protective coatings for municipal water infrastructure',
-    icpFitScore: 7, status: 'scored', scoredAt: '2026-08-26T10:12:00Z', durationMs: 6200, criteriaVersion: 'v4',
+    icpFitScore: 71, status: 'scored', scoredAt: '2026-08-26T10:12:00Z', durationMs: 6200, criteriaVersion: 'v4',
     icpFitReason: 'Right size and clearly B2B, but the pain point is inferred from a downloadable spec sheet rather than stated on the site.',
     icebreaker: 'Your spec library is the most detailed I have seen for municipal coatings — and it looks like your reps assemble those PDFs by hand per bid. Is that still the case?',
     criteriaResults: [
@@ -196,7 +196,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://sablefreight.tech', linkedinUrl: 'https://linkedin.com/company/sable-freight-tech',
     companyName: 'Sable Freight Tech', role: 'Co-founder', niche: 'Logistics — yard management',
     primaryService: 'Yard management software for distribution centres',
-    icpFitScore: 7, status: 'scored', scoredAt: '2026-08-25T13:30:00Z', durationMs: 4400, criteriaVersion: 'v4',
+    icpFitScore: 71, status: 'scored', scoredAt: '2026-08-25T13:30:00Z', durationMs: 4400, criteriaVersion: 'v4',
     icpFitReason: 'Strong pain point and clearly B2B, but at 14 employees they sit at the bottom edge of the size band and there is no sales team to speak of yet.',
     icebreaker: 'Two of your three case studies open with a yard manager on a walkie-talkie. Guessing your own pipeline research is about that manual right now — how are you picking which DCs to call?',
     criteriaResults: [
@@ -218,7 +218,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://verityhealthsystems.com', linkedinUrl: 'https://linkedin.com/company/verity-health-systems',
     companyName: 'Verity Health Systems', role: 'Director of Clinical Operations', niche: 'Healthcare — clinical ops',
     primaryService: 'Care coordination and referral management software for regional hospital networks and multi-site specialty groups',
-    icpFitScore: 6, status: 'scored', scoredAt: '2026-08-25T08:55:00Z', durationMs: 7100, criteriaVersion: 'v4',
+    icpFitScore: 64, status: 'scored', scoredAt: '2026-08-25T08:55:00Z', durationMs: 7100, criteriaVersion: 'v4',
     icpFitReason: 'B2B and the right size, but the buying committee is clinical rather than commercial and nothing on the site suggests an outbound motion we can plug into.',
     icebreaker: 'Your referral-tracking page describes faxes being re-keyed by hand, which is a familiar shape of problem. Who owns the commercial side of a rollout like that on your team?',
     criteriaResults: [
@@ -240,7 +240,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://orbitparcel.com', linkedinUrl: 'https://linkedin.com/company/orbit-parcel',
     companyName: 'Orbit Parcel', role: 'Head of Partnerships', niche: 'Logistics — last-mile delivery',
     primaryService: 'Same-day last-mile delivery for regional retailers',
-    icpFitScore: 5, status: 'needs_review', scoredAt: '2026-08-28T07:19:00Z', durationMs: 9800, criteriaVersion: 'v4',
+    icpFitScore: 53, status: 'needs_review', scoredAt: '2026-08-28T07:19:00Z', durationMs: 9800, criteriaVersion: 'v4',
     unreadableSource: 'linkedin',
     icpFitReason: 'Scored on website evidence only — their LinkedIn page did not respond, so team size and hiring signals are unverified. Everything the site says points to a fit.',
     icebreaker: 'Your coverage map went from four metros to eleven in a year, which usually means the retailer conversations got harder to keep straight. How are you prioritising which accounts to chase next?',
@@ -263,7 +263,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://fieldstonegrocers.com', linkedinUrl: 'https://linkedin.com/company/fieldstone-grocers',
     companyName: 'Fieldstone Grocers', role: 'Operations Lead', niche: 'E-commerce — grocery fulfilment',
     primaryService: 'Online ordering and same-day fulfilment for independent grocery co-operatives across the south-east',
-    icpFitScore: 5, status: 'scored', scoredAt: '2026-08-24T15:02:00Z', durationMs: 6600, criteriaVersion: 'v4',
+    icpFitScore: 53, status: 'scored', scoredAt: '2026-08-24T15:02:00Z', durationMs: 6600, criteriaVersion: 'v4',
     icpFitReason: 'Half B2B and half consumer: they sell software to co-ops but the storefront is a shopper experience, so the must-have on business buyers only partially holds. Team size and the manual-picking pain point are both solid, and there is no outbound function anywhere on the site or the company page, which caps this in the middle of the range.',
     icebreaker: 'The line about pickers walking the same aisle three times stuck with me — most of the co-ops you sell into probably describe their supplier calls the same way. Is the co-op side of the business the one you are trying to grow this year?',
     criteriaResults: [
@@ -285,7 +285,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://loomfield.co', linkedinUrl: 'https://linkedin.com/company/loomfield',
     companyName: 'Loomfield', role: 'Founder', niche: 'E-commerce — apparel',
     primaryService: 'Direct-to-consumer knitwear',
-    icpFitScore: 4, status: 'scored', scoredAt: '2026-08-24T09:26:00Z', durationMs: 3900, criteriaVersion: 'v4',
+    icpFitScore: 42, status: 'scored', scoredAt: '2026-08-24T09:26:00Z', durationMs: 3900, criteriaVersion: 'v4',
     icpFitReason: 'Consumer brand with 11 employees. The size band is met, but they do not sell to businesses and there is no sales function for us to support.',
     icebreaker: 'Your restock waitlist is doing a lot of work for a team of eleven. If you ever open a wholesale line, the buyer research side is where we would be useful.',
     criteriaResults: [
@@ -307,7 +307,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://brightsalthealth.com', linkedinUrl: 'https://linkedin.com/company/brightsalt-health',
     companyName: 'Brightsalt Health', role: 'COO', niche: 'Healthcare — dental group',
     primaryService: 'Nine-location dental practice group',
-    icpFitScore: 3, status: 'scored', scoredAt: '2026-08-23T12:44:00Z', durationMs: 4200, criteriaVersion: 'v4',
+    icpFitScore: 31, status: 'scored', scoredAt: '2026-08-23T12:44:00Z', durationMs: 4200, criteriaVersion: 'v4',
     icpFitReason: 'A patient-facing practice group. Right headcount, wrong buyer: no business customers and nothing resembling a sales pipeline.',
     icebreaker: 'Your new-patient flow is unusually clear for a nine-location group. We work with teams selling to businesses, so this may be a miss — happy to be told so.',
     criteriaResults: [
@@ -328,7 +328,7 @@ export const leads: Lead[] = [
     companyWebsite: 'https://pixelforge.studio', linkedinUrl: 'https://linkedin.com/company/pixelforge-collective',
     companyName: 'Pixelforge Collective', role: 'Principal', niche: 'Agency — creative resourcing',
     primaryService: 'Contract designers and creative staffing on retainer',
-    icpFitScore: 2, status: 'scored', scoredAt: '2026-08-23T09:08:00Z', durationMs: 3600, criteriaVersion: 'v4',
+    icpFitScore: 20, status: 'scored', scoredAt: '2026-08-23T09:08:00Z', durationMs: 3600, criteriaVersion: 'v4',
     disqualified: true,
     icpFitReason: 'Disqualified: creative staffing on retainer. The disqualifier forces a low score regardless of the rest — they do sell to businesses and they do run outbound, but agencies resell this category and churn.',
     icebreaker: 'You place contract designers, which puts you on the other side of our ICP — sending this so it is on record rather than to pitch you.',

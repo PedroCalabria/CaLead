@@ -46,7 +46,7 @@ export function LeadsToolbar({
   const filterCount =
     (filters.niches.length ? 1 : 0) +
     (filters.statuses.length ? 1 : 0) +
-    (filters.minScore > 1 ? 1 : 0) +
+    (filters.minScore > 0 ? 1 : 0) +
     (filters.search.trim() ? 1 : 0);
 
   const contactLabel = anyHidden ? "Contact details hidden" : "Hide contact details";
@@ -93,7 +93,7 @@ export function LeadsToolbar({
           onClick={onToggleColumns}
           aria-expanded={columnsOpen}
           style={controlStyle}
-          className="hidden md:inline-flex"
+          className="hidden md:inline-flex md:items-center md:justify-center"
         >
           Columns
         </button>
@@ -173,16 +173,16 @@ export function LeadsToolbar({
               <div className="text-xs font-medium text-[var(--app-dim)]">Minimum score</div>
               <input
                 type="range"
-                min={1}
-                max={10}
-                step={1}
+                min={0}
+                max={100}
+                step={5}
                 value={filters.minScore}
                 onChange={(e) => setFilters({ minScore: Number(e.target.value), page: 0 })}
                 aria-label="Minimum score"
                 className="mt-2.5 w-full accent-[var(--app-teal)]"
               />
               <div style={{ font: "500 13px/1 var(--font-mono)", color: "var(--app-ink)" }}>
-                {filters.minScore === 1 ? "Any score" : `${filters.minScore} and above`}
+                {filters.minScore === 0 ? "Any score" : `${filters.minScore} and above`}
               </div>
             </div>
 
