@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/fonts.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/colors.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/typography.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/spacing.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/radius.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/elevation.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/motion.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/base.css" />
+<link rel="stylesheet" href="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/styles.css" />
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.js"></script>
+<script src="_ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/_ds_bundle.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-text);font-size:var(--size-body-m);line-height:var(--leading-body);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--text-strong);text-decoration:underline}
+  button{font-family:inherit;font-size:inherit}
+  input,select,textarea{font-family:inherit;font-size:var(--size-body-m);color:var(--text-strong)}
+  :focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
+  @keyframes ib-shimmer{0%{background-position:-320px 0}100%{background-position:320px 0}}
+  @keyframes ib-pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes ib-rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @keyframes ib-fill{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .ib-nav{color:var(--stone-050);background:transparent;border-bottom:1px solid transparent}
+  .ib-nav.is-stuck{color:var(--text-strong);background:rgba(250,250,248,0.72);backdrop-filter:blur(18px);border-bottom-color:var(--border-hairline)}
+  [data-reveal]{transition:opacity var(--dur-reveal) var(--ease-out),transform var(--dur-reveal) var(--ease-out)}
+  html.reveal-ready [data-reveal]{opacity:0;transform:translateY(18px)}
+  html.reveal-ready [data-reveal].is-in{opacity:1;transform:none}
+  @media (max-width:767px){
+    .m-stack{display:block !important}
+    .m-col{flex-direction:column !important;align-items:stretch !important}
+    .m-hide{display:none !important}
+    .m-pad{padding-left:20px !important;padding-right:20px !important}
+    .m-full{width:100% !important;max-width:100% !important}
+    .m-sec{padding-top:56px !important;padding-bottom:56px !important}
+    .m-h1{font-size:40px !important;line-height:1.04 !important}
+    .m-h2{font-size:27px !important}
+    .m-gap{gap:16px !important}
+    .m-mt{margin-top:24px !important}
+    .m-onecol{grid-template-columns:1fr !important}
+  }
+  @media (min-width:768px){ .d-hide{display:none !important} }
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#f4f5f5">
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div style="background:var(--surface-page)">
+  <header class="ib-nav" style="position:fixed;top:0;left:0;right:0;z-index:40;transition:background-color var(--dur-base) var(--ease-standard),color var(--dur-base) var(--ease-standard),border-color var(--dur-base) var(--ease-standard)">
+    <div class="m-pad" style="max-width:var(--page-max);margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;color:inherit;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:22px;letter-spacing:-0.035em;cursor:pointer">Icebreak</button>
+      <nav style="display:flex;align-items:center;gap:20px">
+        <a href="#how" class="m-hide" style="color:inherit;font:var(--type-ui)">How it works</a>
+        <a href="#criteria" class="m-hide" style="color:inherit;font:var(--type-ui)">ICP criteria</a>
+        <button onClick="{{ goLeads }}" class="m-hide" style="background:none;border:0;padding:0;color:inherit;font:var(--type-ui);cursor:pointer">Leads</button>
+        <button onClick="{{ goForm }}" style="display:inline-flex;align-items:center;height:40px;padding:0 16px;background:transparent;border:1px solid currentColor;border-radius:var(--radius-control);color:inherit;font:var(--type-ui);letter-spacing:-0.01em;cursor:pointer">Qualify a lead</button>
+      </nav>
+    </div>
+  </header>
+
+  <section style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:var(--surface-inverse);overflow:hidden;padding:120px 32px 28px">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(var(--border-inverse) 1px,transparent 1px),linear-gradient(90deg,var(--border-inverse) 1px,transparent 1px);background-size:80px 80px;opacity:0.5;mask-image:radial-gradient(120% 90% at 28% 0%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(120% 90% at 28% 0%,#000 20%,transparent 75%)"></div>
+
+    <div class="m-pad" style="position:relative;width:100%;max-width:var(--page-max);margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:center">
+      <div class="m-onecol m-gap" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:72px;align-items:center">
+        <div data-reveal class="is-in" style="display:flex;flex-direction:column;gap:26px">
+          <div style="display:flex"><x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Badge" hint-size="auto,24px" tone="inverse">For outbound teams</x-import></div>
+          <h1 class="m-h1" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:clamp(40px,4.6vw,56px);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--stone-050);max-width:17ch">Know if a lead is worth your time, and what to say to them</h1>
+          <p style="margin:0;font:var(--type-body-lead);color:var(--stone-400);max-width:52ch">Icebreak reads the company website and the contact's LinkedIn, scores the lead against the criteria your team defined, shows the evidence behind the score, and writes the opener your rep uses on the first touch.</p>
+          <div class="m-col" style="display:flex;gap:12px;align-items:center">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Button" hint-size="auto,48px" variant="accent" size="lg" icon-right="arrow-up-right" onClick="{{ goForm }}">Qualify a lead</x-import>
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Button" hint-size="auto,48px" variant="outlineInverse" size="lg" onClick="{{ goLeads }}">See a scored list</x-import>
+          </div>
+        </div>
+
+        <div data-reveal class="is-in" style="background:var(--surface-card);border-radius:var(--radius-panel);box-shadow:var(--shadow-dialog);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border-hairline);background:var(--surface-sunken)">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="15px,15px" name="target" size="15px" color="var(--text-muted)"></x-import>
+            <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted);flex:1">Lead output</span>
+            <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-faint)">SCORED 14:02</span>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="flex:1;min-width:0">
+                <div style="font:var(--type-h4);color:var(--text-strong)">Northlight</div>
+                <div style="font:var(--type-body-small);color:var(--text-muted)">Jordan Ellis · Head of Growth · HR tech</div>
+              </div>
+              <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Badge" hint-size="auto,22px" tone="hot">Hot 90</x-import>
+            </div>
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.ScoreMeter" hint-size="100%,34px" label="ICP fit" value="{{ heroScore }}"></x-import>
+            <p style="margin:0;font:var(--type-body-small);color:var(--text-body)">Mid-market SaaS with 40–60 employees, hiring 3 SDRs right now, and their site leads with a manual-process pain point the product removes.</p>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Generated ice breaker</span>
+              <p style="margin:0;font:var(--type-body);color:var(--text-strong);background:var(--surface-accent-soft);border:1px solid var(--blue-200);border-radius:var(--radius-card);padding:14px">Saw you're hiring three SDRs at once off the back of the Series A — that's a lot of ramp happening in parallel. How are you handling lead research for the new reps before they hit quota?</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Badge" hint-size="auto,22px" tone="cold" uppercase="{{ false }}">LinkedIn · Jobs — 3 open roles</x-import>
+              <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Badge" hint-size="auto,22px" tone="cold" uppercase="{{ false }}">Website · Homepage hero</x-import>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-pad" style="position:relative;width:100%;max-width:var(--page-max);margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:40px">
+      <span style="font:var(--type-body-small);color:var(--stone-500);max-width:44ch">No card, no CRM connection. Scoring takes about five seconds per lead.</span>
+      <a href="#problem" class="m-hide" style="display:flex;align-items:center;gap:8px;color:var(--stone-400);font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--stone-400)">Scroll<x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="16px,16px" name="arrow-down" size="16px"></x-import></a>
+    </div>
+  </section>
+
+  <section id="problem" class="m-pad m-sec" style="max-width:var(--page-max);margin:0 auto;padding:96px 32px">
+    <div data-reveal class="m-onecol" style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:start">
+      <h2 class="m-h2" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:var(--size-display-m);line-height:var(--leading-heading);letter-spacing:var(--tracking-heading);color:var(--text-strong)">Two hours of research, then a message that could have gone to anyone.</h2>
+      <div style="display:grid;gap:20px;max-width:var(--prose-max)">
+        <p style="margin:0;font:var(--type-body-lead);color:var(--text-body)">A rep opens a lead, reads the site, checks LinkedIn, guesses at fit, and moves on. Half the leads were never going to buy, and the ones that were got a first message that opened with "I came across your company."</p>
+        <p style="margin:0;font:var(--type-body-lead);color:var(--text-body)">Both problems have the same cause: the research and the writing happen at the end of the day, by hand, one lead at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" style="background:var(--surface-inverse)">
+    <div class="m-pad m-sec" style="max-width:var(--page-max);margin:0 auto;padding:96px 32px">
+      <div data-reveal style="display:flex;flex-direction:column;gap:12px;max-width:52ch">
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--stone-500)">How it works</span>
+        <h2 class="m-h2" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:var(--size-display-m);line-height:var(--leading-heading);letter-spacing:var(--tracking-heading);color:var(--stone-050)">Three steps, about five seconds</h2>
+      </div>
+      <ol data-reveal class="m-onecol m-mt" style="list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <li style="background:var(--surface-inverse-raised);border:1px solid var(--border-inverse);border-radius:var(--radius-card);padding:24px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="22px,22px" name="scan-line" size="22px" color="var(--blue-400)"></x-import>
+            <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--stone-500)">01</span>
+          </div>
+          <div style="font:var(--type-h4);color:var(--stone-050)">Drop in a lead's website and LinkedIn</div>
+          <p style="margin:0;font:var(--type-body-small);color:var(--stone-400)">Five fields: name, email, phone, company site, LinkedIn URL.</p>
+        </li>
+        <li style="background:var(--surface-inverse-raised);border:1px solid var(--border-inverse);border-radius:var(--radius-card);padding:24px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="22px,22px" name="sliders-horizontal" size="22px" color="var(--blue-400)"></x-import>
+            <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--stone-500)">02</span>
+          </div>
+          <div style="font:var(--type-h4);color:var(--stone-050)">Icebreak scores the lead against your ICP</div>
+          <p style="margin:0;font:var(--type-body-small);color:var(--stone-400)">Each criterion is checked against a specific page or section, and the snippet is kept.</p>
+        </li>
+        <li style="background:var(--surface-inverse-raised);border:1px solid var(--border-inverse);border-radius:var(--radius-card);padding:24px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="22px,22px" name="message-square-quote" size="22px" color="var(--blue-400)"></x-import>
+            <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--stone-500)">03</span>
+          </div>
+          <div style="font:var(--type-h4);color:var(--stone-050)">You get a fit score, the reasoning and an opener</div>
+          <p style="margin:0;font:var(--type-body-small);color:var(--stone-400)">Written for that company, referencing something they actually said. Copy it and send.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="criteria" class="m-pad m-sec" style="max-width:var(--page-max);margin:0 auto;padding:96px 32px">
+    <div data-reveal class="m-onecol" style="display:grid;grid-template-columns:0.95fr 1.05fr;gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">The difference</span>
+        <h2 class="m-h2" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:var(--size-display-m);line-height:var(--leading-heading);letter-spacing:var(--tracking-heading);color:var(--text-strong)">Your ICP, your rules</h2>
+        <p style="margin:0;font:var(--type-body-lead);color:var(--text-body);max-width:var(--prose-max)">A score is only useful if you set the terms. You write the criteria in your own words, mark each one as a must-have, a nice-to-have or a disqualifier, weight it, and say where to look for it.</p>
+        <p style="margin:0;font:var(--type-body-lead);color:var(--text-body);max-width:var(--prose-max)">Change a criterion and you see what it does to a real lead before you save. When a rep asks why a lead scored 42, the answer is a list they helped write.</p>
+        <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Button" hint-size="auto,40px" variant="secondary" icon="sliders-horizontal" onClick="{{ goIcp }}" style="align-self:flex-start">Open ICP criteria</x-import>
+      </div>
+      <div style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:var(--radius-card);overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border-hairline);background:var(--surface-sunken)">
+          <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Criteria</span>
+          <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Weight</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Team size 10–200</div><div style="font:var(--type-body-small);color:var(--text-muted)">Must have · LinkedIn and website</div></div>
+          <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-strong)">5</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Manual-process pain point</div><div style="font:var(--type-body-small);color:var(--text-muted)">Must have · Website</div></div>
+          <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-strong)">4</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Hiring sales or SDR roles</div><div style="font:var(--type-body-small);color:var(--text-muted)">Nice to have · LinkedIn</div></div>
+          <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-strong)">3</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Staffing or recruiting agency</div><div style="font:var(--type-body-small);color:var(--text-muted)">Forces a low score whatever else is met</div></div>
+          <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Badge" hint-size="auto,22px" tone="critical">Disqualifier</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-pad m-sec" style="max-width:var(--page-max);margin:0 auto;padding:0 32px 96px">
+    <div data-reveal class="m-col" style="display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+      <h2 class="m-h2" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:var(--size-heading-l);line-height:var(--leading-heading);letter-spacing:var(--tracking-heading);color:var(--text-strong)">What you get</h2>
+      <p style="margin:0;font:var(--type-body);color:var(--text-muted);max-width:46ch">A list you can scan by score, and a detail view that shows where every conclusion came from.</p>
+    </div>
+    <div data-reveal class="m-onecol m-mt" style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:32px">
+      <div style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:var(--radius-card);overflow:hidden">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border-hairline);background:var(--surface-sunken);font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Leads</div>
+        <div style="display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Kelp Analytics</div><div style="font:var(--type-body-small);color:var(--text-muted)">B2B SaaS — supply chain analytics</div></div>
+          <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.ScoreMeter" hint-size="100%,26px" value="{{ s96 }}" size="sm"></x-import>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Cadence Freight</div><div style="font:var(--type-body-small);color:var(--text-muted)">Logistics — freight brokerage</div></div>
+          <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.ScoreMeter" hint-size="100%,26px" value="{{ s78 }}" size="sm"></x-import>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border-hairline)">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Fernwood Studio</div><div style="font:var(--type-body-small);color:var(--text-muted)">Agency — brand design</div></div>
+          <span style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-faint)">READING SOURCES</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:center;padding:14px 20px">
+          <div><div style="font:var(--type-ui);color:var(--text-strong)">Pixelforge Collective</div><div style="font:var(--type-body-small);color:var(--text-muted)">Agency — creative resourcing</div></div>
+          <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.ScoreMeter" hint-size="100%,26px" value="{{ s18 }}" size="sm"></x-import>
+        </div>
+      </div>
+      <div style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:var(--radius-card);overflow:hidden">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border-hairline);background:var(--surface-sunken);font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Evidence</div>
+        <div style="padding:20px;display:grid;gap:16px">
+          <div style="display:flex;gap:12px">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="16px,16px" name="linkedin" size="16px" color="var(--text-muted)" style="margin-top:3px"></x-import>
+            <div>
+              <div style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-muted)">Company page — About</div>
+              <div style="margin-top:6px;font:var(--type-body);color:var(--text-strong)">52 employees · Software Development · San Francisco, CA</div>
+              <div style="margin-top:6px;font:var(--type-body-small);color:var(--text-muted)">Supports: Team size 10–200</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px">
+            <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Icon" hint-size="16px,16px" name="globe" size="16px" color="var(--text-muted)" style="margin-top:3px"></x-import>
+            <div>
+              <div style="font:var(--type-data);letter-spacing:var(--tracking-mono);color:var(--text-muted)">Homepage — hero</div>
+              <div style="margin-top:6px;font:var(--type-body);color:var(--text-strong)">Stop copy-pasting candidates between five tools.</div>
+              <div style="margin-top:6px;font:var(--type-body-small);color:var(--text-muted)">Supports: Manual-process pain point</div>
+            </div>
+          </div>
+          <p style="margin:0;padding-top:16px;border-top:1px solid var(--border-hairline);font:var(--type-body-small);color:var(--text-muted)">Every criterion links to the snippet that decided it, in both directions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface-accent)">
+    <div data-reveal class="m-pad m-col m-sec" style="max-width:var(--page-max);margin:0 auto;padding:72px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h2 class="m-h2" style="margin:0;font-family:var(--font-display);font-weight:var(--weight-medium);font-size:var(--size-heading-l);line-height:var(--leading-heading);letter-spacing:var(--tracking-heading);color:var(--text-on-accent)">Score your first lead in about five seconds</h2>
+        <p style="margin:0;font:var(--type-body-lead);color:var(--stone-800)">Paste a website and a LinkedIn URL. Nothing to install.</p>
+      </div>
+      <x-import component-from-global-scope="CaLeadDesignSystem_0ab86f.Button" hint-size="auto,48px" variant="primary" size="lg" icon-right="arrow-up-right" onClick="{{ goForm }}">Qualify a lead</x-import>
+    </div>
+  </section>
+
+  <footer style="background:var(--surface-inverse)">
+    <div class="m-pad" style="max-width:var(--page-max);margin:0 auto;padding:56px 32px;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between">
+      <div style="max-width:30ch;display:flex;flex-direction:column;gap:10px">
+        <span style="font-family:var(--font-display);font-weight:var(--weight-medium);font-size:20px;letter-spacing:-0.035em;color:var(--stone-050)">Icebreak</span>
+        <span style="font:var(--type-body-small);color:var(--stone-400)">Lead qualification and ice breakers for outbound teams.</span>
+      </div>
+      <div style="display:grid;gap:10px">
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--stone-500)">Product</span>
+        <button onClick="{{ goLeads }}" style="background:none;border:0;padding:0;text-align:left;color:var(--stone-400);font:var(--type-body-small);cursor:pointer">Leads</button>
+        <button onClick="{{ goForm }}" style="background:none;border:0;padding:0;text-align:left;color:var(--stone-400);font:var(--type-body-small);cursor:pointer">Submit a lead</button>
+        <button onClick="{{ goIcp }}" style="background:none;border:0;padding:0;text-align:left;color:var(--stone-400);font:var(--type-body-small);cursor:pointer">ICP criteria</button>
+      </div>
+      <div style="max-width:36ch;display:grid;gap:10px">
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--stone-500)">Lead data</span>
+        <span style="font:var(--type-body-small);color:var(--stone-400)">Only the five fields you submit are stored, plus the public pages read to score the lead. Contact details can be hidden from the interface at any time, and deleted on request.</span>
+      </div>
+      <div style="display:grid;gap:10px">
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--stone-500)">Contact</span>
+        <span style="font:var(--type-body-small);color:var(--stone-400)">hello@icebreak.example</span>
+        <span style="font:var(--type-body-small);color:var(--stone-400)">+1 (415) 555-0100</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+<div>
+  <header style="position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid #e2e5e5">
+    <div style="max-width:1440px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:28px">
+      <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;background:none;border:0;padding:0;cursor:pointer">
+        <div style="width:9px;height:19px;background:#0a6a72"></div>
+        <span style="font:500 16px/1 var(--font-display);letter-spacing:-0.01em">Icebreak</span>
+      </button>
+      <nav class="m-hide" style="display:flex;align-items:center;gap:4px">
+        <button onClick="{{ goLeads }}" style="height:34px;padding:0 12px;background:{{ tabLeadsBg }};border:0;border-radius:4px;color:{{ tabLeadsFg }};font-weight:500;cursor:pointer">Leads</button>
+        <button onClick="{{ goForm }}" style="height:34px;padding:0 12px;background:{{ tabFormBg }};border:0;border-radius:4px;color:{{ tabFormFg }};font-weight:500;cursor:pointer">Submit a lead</button>
+        <button onClick="{{ goIcp }}" style="height:34px;padding:0 12px;background:{{ tabIcpBg }};border:0;border-radius:4px;color:{{ tabIcpFg }};font-weight:500;cursor:pointer">ICP criteria</button>
+      </nav>
+      <div style="flex:1"></div>
+      <button onClick="{{ toggleDrawer }}" class="d-hide" style="width:38px;height:38px;display:grid;place-items:center;gap:4px;background:none;border:1px solid #e2e5e5;border-radius:4px;cursor:pointer" aria-label="Menu">
+        <div style="width:16px;height:1.5px;background:#13181a"></div>
+        <div style="width:16px;height:1.5px;background:#13181a"></div>
+      </button>
+    </div>
+    <sc-if value="{{ drawer }}" hint-placeholder-val="{{ false }}">
+      <nav class="d-hide" style="border-top:1px solid #e2e5e5;padding:8px;display:grid;gap:4px;background:#fff">
+        <button onClick="{{ goLeads }}" style="height:48px;padding:0 14px;text-align:left;background:{{ tabLeadsBg }};border:0;border-radius:5px;color:{{ tabLeadsFg }};font-weight:500;font-size:15px;cursor:pointer">Leads</button>
+        <button onClick="{{ goForm }}" style="height:48px;padding:0 14px;text-align:left;background:{{ tabFormBg }};border:0;border-radius:5px;color:{{ tabFormFg }};font-weight:500;font-size:15px;cursor:pointer">Submit a lead</button>
+        <button onClick="{{ goIcp }}" style="height:48px;padding:0 14px;text-align:left;background:{{ tabIcpBg }};border:0;border-radius:5px;color:{{ tabIcpFg }};font-weight:500;font-size:15px;cursor:pointer">ICP criteria</button>
+      </nav>
+    </sc-if>
+  </header>
+
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+  <main class="m-pad" style="max-width:620px;margin:0 auto;padding:44px 24px 96px">
+    <sc-if value="{{ formIdle }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:34px;letter-spacing:-0.01em">Qualify a lead</h1>
+      <p style="margin:10px 0 30px;color:#59646a">We read the company website and the LinkedIn page, then score the lead against your ICP criteria.</p>
+
+      <sc-if value="{{ formError }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="margin-bottom:20px;padding:12px 14px;background:#fdf1ef;border:1px solid #f0d3ce;border-left:3px solid #9e3327;border-radius:4px;font-size:13px;color:#7d2b21">{{ formError }}</div>
+      </sc-if>
+
+      <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:24px">
+        <div style="display:grid;gap:20px">
+          <div>
+            <label for="f-name" style="display:block;font-weight:500;margin-bottom:6px">Full name</label>
+            <input id="f-name" type="text" placeholder="Jordan Ellis" value="{{ fName.value }}" onChange="{{ fName.onChange }}" onBlur="{{ fName.onBlur }}" style="width:100%;height:44px;padding:0 12px;background:#fff;border:1px solid {{ fName.border }};border-radius:4px" />
+            <sc-if value="{{ fName.error }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:13px;color:#9e3327">{{ fName.error }}</div></sc-if>
+          </div>
+          <div>
+            <label for="f-email" style="display:block;font-weight:500;margin-bottom:6px">Email</label>
+            <input id="f-email" type="email" placeholder="jordan@acme.io" value="{{ fEmail.value }}" onChange="{{ fEmail.onChange }}" onBlur="{{ fEmail.onBlur }}" style="width:100%;height:44px;padding:0 12px;background:#fff;border:1px solid {{ fEmail.border }};border-radius:4px" />
+            <sc-if value="{{ fEmail.error }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:13px;color:#9e3327">{{ fEmail.error }}</div></sc-if>
+          </div>
+          <div>
+            <label for="f-phone" style="display:block;font-weight:500;margin-bottom:6px">Phone number</label>
+            <div style="display:flex;gap:8px">
+              <select aria-label="Country code" value="{{ ccValue }}" onChange="{{ onCcChange }}" style="height:44px;padding:0 8px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-family:var(--font-mono)">
+                <option value="+1">US +1</option>
+                <option value="+44">UK +44</option>
+                <option value="+49">DE +49</option>
+                <option value="+61">AU +61</option>
+                <option value="+55">BR +55</option>
+              </select>
+              <input id="f-phone" type="tel" placeholder="+1 (415) 555-0148" value="{{ fPhone.value }}" onChange="{{ fPhone.onChange }}" onBlur="{{ fPhone.onBlur }}" style="flex:1;height:44px;padding:0 12px;background:#fff;border:1px solid {{ fPhone.border }};border-radius:4px;font-family:var(--font-mono)" />
+            </div>
+            <sc-if value="{{ fPhone.error }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:13px;color:#9e3327">{{ fPhone.error }}</div></sc-if>
+          </div>
+          <div>
+            <label for="f-site" style="display:block;font-weight:500;margin-bottom:6px">Company website</label>
+            <input id="f-site" type="url" placeholder="acme.io" value="{{ fSite.value }}" onChange="{{ fSite.onChange }}" onBlur="{{ fSite.onBlur }}" style="width:100%;height:44px;padding:0 12px;background:#fff;border:1px solid {{ fSite.border }};border-radius:4px;font-family:var(--font-mono)" />
+            <sc-if value="{{ fSite.error }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:13px;color:#9e3327">{{ fSite.error }}</div></sc-if>
+            <sc-if value="{{ siteHint }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:12px;color:#8b959a">Saved as {{ siteHint }}</div></sc-if>
+          </div>
+          <div>
+            <label for="f-li" style="display:block;font-weight:500;margin-bottom:6px">LinkedIn URL</label>
+            <input id="f-li" type="url" placeholder="linkedin.com/company/acme" value="{{ fLi.value }}" onChange="{{ fLi.onChange }}" onBlur="{{ fLi.onBlur }}" style="width:100%;height:44px;padding:0 12px;background:#fff;border:1px solid {{ fLi.border }};border-radius:4px;font-family:var(--font-mono)" />
+            <sc-if value="{{ fLi.error }}" hint-placeholder-val="{{ false }}"><div style="margin-top:6px;font-size:13px;color:#9e3327">{{ fLi.error }}</div></sc-if>
+          </div>
+        </div>
+
+        <div style="margin-top:26px;padding-top:20px;border-top:1px solid #eceeee">
+          <button onClick="{{ onSubmit }}" style="width:100%;height:46px;background:#0a6a72;color:#fff;border:1px solid #0a6a72;border-radius:4px;font-weight:500;font-size:15px;cursor:pointer">Score this lead</button>
+          <div style="margin-top:12px;font-size:13px;color:#8b959a">We read two public pages — the website and the LinkedIn page — and score the lead against your seven active criteria. It takes about five seconds. Nothing is sent to the lead.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:12px;color:#8b959a">
+        <span style="font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase">Demo</span>
+        <button onClick="{{ setSimScored }}" style="height:28px;padding:0 10px;background:{{ simScoredBg }};color:{{ simScoredFg }};border:1px solid #dde0e0;border-radius:3px;cursor:pointer;font-size:12px">Both sources readable</button>
+        <button onClick="{{ setSimPartial }}" style="height:28px;padding:0 10px;background:{{ simPartialBg }};color:{{ simPartialFg }};border:1px solid #dde0e0;border-radius:3px;cursor:pointer;font-size:12px">LinkedIn unreachable</button>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ formProcessing }}" hint-placeholder-val="{{ false }}">
+    <div style="animation:ib-rise .3s ease both">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:34px;letter-spacing:-0.01em">Reading the sources</h1>
+      <p style="margin:10px 0 30px;color:#59646a">{{ procCompany }} · two public pages, seven criteria.</p>
+      <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;overflow:hidden">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;gap:14px;padding:18px 20px;border-bottom:1px solid #f2f3f3">
+            <div style="flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;display:grid;place-items:center;border:1.5px solid {{ s.ring }};background:{{ s.dotBg }};color:#fff;font:500 11px/1 var(--font-mono)">{{ s.glyph }}</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between;gap:12px">
+                <span style="font-weight:500;color:{{ s.fg }}">{{ s.label }}</span>
+                <span style="font:400 12px/1.5 var(--font-mono);color:#8b959a">{{ s.meta }}</span>
+              </div>
+              <div style="margin-top:4px;font-size:13px;color:#8b959a">{{ s.detail }}</div>
+              <div style="margin-top:10px;height:3px;background:#eceeee;border-radius:2px;overflow:hidden">
+                <div style="height:3px;width:{{ s.pct }};background:{{ s.bar }};transition:width .9s linear"></div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px;font-size:13px;color:#8b959a">You can leave this page — scoring continues and the lead appears in the list as soon as it is done.</div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ formDone }}" hint-placeholder-val="{{ false }}">
+    <div style="animation:ib-rise .35s ease both">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:34px;letter-spacing:-0.01em">{{ doneTitle }}</h1>
+      <p style="margin:10px 0 24px;color:#59646a">{{ doneSub }}</p>
+      <sc-if value="{{ partialNotice }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="margin-bottom:20px;padding:12px 14px;background:#fdf7ec;border:1px solid #ecdfc4;border-left:3px solid #9a6410;border-radius:4px;font-size:13px;color:#7a5210">{{ partialNotice }}</div>
+      </sc-if>
+      <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:24px">
+        <div style="display:flex;gap:20px;align-items:flex-start">
+          <div>
+            <div style="display:flex;align-items:flex-end;gap:2px;height:38px">
+              <sc-for list="{{ doneTicks }}" as="t" hint-placeholder-count="10"><div style="width:5px;height:38px;background:{{ t.bg }};transform-origin:bottom;animation:ib-fill .5s ease both"></div></sc-for>
+            </div>
+            <div style="margin-top:8px;font:500 44px/1 var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-0.02em;color:{{ doneScoreColor }}">{{ doneScore }}<span style="font-size:15px;color:#8b959a">/10</span></div>
+            <div style="font-size:12px;font-weight:500;color:{{ doneScoreColor }}">{{ doneBand }}</div>
+          </div>
+          <div style="flex:1;min-width:0;border-left:1px solid #eceeee;padding-left:20px">
+            <div style="font-weight:500;font-size:16px">{{ doneCompany }}</div>
+            <div style="margin-top:8px;font-size:13px;color:#59646a">{{ doneReason }}</div>
+          </div>
+        </div>
+        <div class="m-col" style="display:flex;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid #eceeee">
+          <button onClick="{{ viewNewLead }}" style="flex:1;height:44px;background:#0a6a72;color:#fff;border:1px solid #0a6a72;border-radius:4px;font-weight:500;cursor:pointer">View lead</button>
+          <button onClick="{{ resetForm }}" style="flex:1;height:44px;background:#fff;color:#13181a;border:1px solid #cfd4d4;border-radius:4px;font-weight:500;cursor:pointer">Qualify another lead</button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isLeads }}" hint-placeholder-val="{{ false }}">
+  <main class="m-pad" style="max-width:1440px;margin:0 auto;padding:24px 24px 90px">
+    <div class="m-col" style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
+      <div>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:30px;letter-spacing:-0.01em">Leads</h1>
+        <div style="margin-top:4px;font:400 13px/1.4 var(--font-mono);color:#8b959a">{{ g.countLabel }}</div>
+      </div>
+      <button onClick="{{ g.goForm }}" style="height:38px;padding:0 16px;background:#0a6a72;color:#fff;border:1px solid #0a6a72;border-radius:4px;font-weight:500;cursor:pointer">Submit a lead</button>
+    </div>
+
+    <div class="m-col" style="display:flex;align-items:center;gap:8px;margin-top:18px;position:relative">
+      <div style="position:relative;flex:1;min-width:180px;max-width:340px">
+        <input type="search" placeholder="Search name, company or niche" value="{{ g.search }}" onChange="{{ g.onSearch }}" style="width:100%;height:38px;padding:0 12px;background:#fff;border:1px solid #dde0e0;border-radius:4px" />
+      </div>
+      <button onClick="{{ g.toggleFilters }}" style="height:38px;padding:0 14px;background:#fff;border:1px solid #dde0e0;border-radius:4px;color:#13181a;cursor:pointer">Filters <span style="font-family:var(--font-mono);color:#0a6a72">{{ g.filterCount }}</span></button>
+      <button onClick="{{ g.toggleColumns }}" class="m-hide" style="height:38px;padding:0 14px;background:#fff;border:1px solid #dde0e0;border-radius:4px;color:#13181a;cursor:pointer">Columns</button>
+      <div style="flex:1"></div>
+      <label class="m-hide" style="display:flex;align-items:center;gap:9px;font-size:13px;color:#59646a;cursor:pointer">
+        <button onClick="{{ g.toggleAllContacts }}" aria-label="Hide contact details" style="width:34px;height:18px;padding:2px;border:0;border-radius:9px;background:{{ g.contactSwitchBg }};cursor:pointer">
+          <span style="display:block;width:14px;height:14px;border-radius:50%;background:#fff;transform:{{ g.contactKnob }};transition:transform .15s ease"></span>
+        </button>
+        {{ g.contactLabel }}
+      </label>
+      <select aria-label="Sort by" value="{{ g.sortValue }}" onChange="{{ g.onSort }}" class="m-hide" style="height:38px;padding:0 8px;background:#fff;border:1px solid #dde0e0;border-radius:4px">
+        <option value="score">Sort: ICP fit score</option>
+        <option value="date">Sort: date added</option>
+        <option value="name">Sort: name</option>
+      </select>
+    </div>
+
+    <sc-if value="{{ g.columnsOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;padding:14px 16px;background:#fff;border:1px solid #e2e5e5;border-radius:6px;max-width:420px">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:500">Columns</span><button onClick="{{ g.closeColumns }}" style="background:none;border:0;color:#8b959a;cursor:pointer">Close</button></div>
+        <div style="margin-top:6px;font-size:12px;color:#8b959a">Contact fields are personal data. Hide them individually, or all three at once for screen sharing.</div>
+        <div style="display:grid;gap:2px;margin-top:12px">
+          <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer"><input type="checkbox" checked="{{ g.showName }}" onChange="{{ g.toggleName }}" style="width:15px;height:15px;accent-color:#0a6a72" />Full name</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer"><input type="checkbox" checked="{{ g.showEmail }}" onChange="{{ g.toggleEmail }}" style="width:15px;height:15px;accent-color:#0a6a72" />Email</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer"><input type="checkbox" checked="{{ g.showPhone }}" onChange="{{ g.togglePhone }}" style="width:15px;height:15px;accent-color:#0a6a72" />Phone number</label>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.filtersOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:10px;padding:16px;background:#fff;border:1px solid #e2e5e5;border-radius:6px">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:500">Filters</span><button onClick="{{ g.closeFilters }}" style="background:none;border:0;color:#8b959a;cursor:pointer">Close</button></div>
+        <div class="m-stack" style="display:grid;grid-template-columns:220px 1fr 1fr;gap:24px;margin-top:14px">
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#59646a">Minimum score</div>
+            <input type="range" min="1" max="10" step="1" value="{{ g.minScore }}" onChange="{{ g.onMinScore }}" style="width:100%;margin-top:10px;accent-color:#0a6a72" />
+            <div style="font:500 13px/1 var(--font-mono);color:#13181a">{{ g.minScoreLabel }}</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#59646a">Niche</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+              <sc-for list="{{ g.niches }}" as="n" hint-placeholder-count="5">
+                <button onClick="{{ n.toggle }}" style="height:28px;padding:0 10px;background:{{ n.bg }};color:{{ n.fg }};border:1px solid #dde0e0;border-radius:14px;font-size:12px;cursor:pointer">{{ n.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#59646a">Status</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+              <sc-for list="{{ g.statuses }}" as="st" hint-placeholder-count="3">
+                <button onClick="{{ st.toggle }}" style="height:28px;padding:0 10px;background:{{ st.bg }};color:{{ st.fg }};border:1px solid #dde0e0;border-radius:14px;font-size:12px;cursor:pointer">{{ st.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div class="d-hide" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid #f2f3f3">
+          <label style="display:flex;align-items:center;gap:9px;font-size:13px;color:#59646a">
+            <button onClick="{{ g.toggleAllContacts }}" aria-label="Hide contact details" style="width:34px;height:18px;padding:2px;border:0;border-radius:9px;background:{{ g.contactSwitchBg }};cursor:pointer"><span style="display:block;width:14px;height:14px;border-radius:50%;background:#fff;transform:{{ g.contactKnob }};transition:transform .15s ease"></span></button>
+            {{ g.contactLabel }}
+          </label>
+          <select aria-label="Sort by" value="{{ g.sortValue }}" onChange="{{ g.onSort }}" style="height:38px;padding:0 8px;background:#fff;border:1px solid #dde0e0;border-radius:4px">
+            <option value="score">Sort: score</option>
+            <option value="date">Sort: date</option>
+            <option value="name">Sort: name</option>
+          </select>
+        </div>
+        <button onClick="{{ g.clearFilters }}" style="margin-top:14px;height:32px;padding:0 12px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:13px;cursor:pointer">Clear filters</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.hasSelection }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;margin-top:12px;padding:10px 14px;background:#13181a;color:#fff;border-radius:5px">
+        <span style="font:500 13px/1 var(--font-mono)">{{ g.selectionLabel }}</span>
+        <button onClick="{{ g.copySelected }}" style="height:32px;padding:0 12px;background:#fff;color:#13181a;border:0;border-radius:4px;font-weight:500;font-size:13px;cursor:pointer">Copy icebreakers</button>
+        <button onClick="{{ g.clearSelection }}" style="height:32px;padding:0 10px;background:none;color:#b9c0c2;border:0;font-size:13px;cursor:pointer">Clear</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.loading }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:14px;background:#fff;border:1px solid #e2e5e5;border-radius:6px;overflow:hidden">
+        <sc-for list="{{ g.skeleton }}" as="sk" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 16px;border-bottom:1px solid #f2f3f3">
+            <div style="width:34px;height:14px;border-radius:3px;background:linear-gradient(90deg,#eef0f0 25%,#f7f8f8 37%,#eef0f0 63%);background-size:320px 100%;animation:ib-shimmer 1.3s linear infinite"></div>
+            <div style="width:{{ sk.w }};height:14px;border-radius:3px;background:linear-gradient(90deg,#eef0f0 25%,#f7f8f8 37%,#eef0f0 63%);background-size:320px 100%;animation:ib-shimmer 1.3s linear infinite"></div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.empty }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:14px;padding:64px 24px;background:#fff;border:1px solid #e2e5e5;border-radius:6px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px">No leads scored yet</div>
+        <p style="margin:10px auto 0;max-width:44ch;color:#59646a">Submit a website and a LinkedIn URL and the first score lands in about five seconds.</p>
+        <button onClick="{{ g.goForm }}" style="margin-top:20px;height:42px;padding:0 20px;background:#0a6a72;color:#fff;border:0;border-radius:4px;font-weight:500;cursor:pointer">Qualify a lead</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.filteredEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:14px;padding:56px 24px;background:#fff;border:1px solid #e2e5e5;border-radius:6px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px">No leads match these filters</div>
+        <p style="margin:10px auto 0;max-width:46ch;color:#59646a">{{ g.total }} leads are in the list. Widen the score range or clear the filters to see them.</p>
+        <button onClick="{{ g.clearFilters }}" style="margin-top:20px;height:40px;padding:0 18px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-weight:500;cursor:pointer">Clear filters</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ g.desktop }}" hint-placeholder-val="{{ true }}">
+    <sc-if value="{{ g.hasRows }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:14px;background:#fff;border:1px solid #e2e5e5;border-radius:6px;overflow:auto;max-height:calc(100vh - 250px)">
+        <table style="width:100%;min-width:1180px;border-collapse:collapse;font-size:13px">
+          <thead>
+            <tr style="background:#fbfbfb">
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;width:36px"><input type="checkbox" aria-label="Select all on this page" checked="{{ g.allSelected }}" onChange="{{ g.toggleAll }}" style="width:15px;height:15px;accent-color:#0a6a72" /></th>
+              <th onClick="{{ g.sortScore }}" style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a;cursor:pointer;white-space:nowrap">ICP fit {{ g.scoreArrow }}</th>
+              <sc-if value="{{ g.showName }}" hint-placeholder-val="{{ true }}"><th onClick="{{ g.sortName }}" style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a;cursor:pointer;white-space:nowrap">Full name {{ g.nameArrow }}</th></sc-if>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Company</th>
+              <sc-if value="{{ g.showEmail }}" hint-placeholder-val="{{ true }}"><th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Email</th></sc-if>
+              <sc-if value="{{ g.showPhone }}" hint-placeholder-val="{{ true }}"><th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a;white-space:nowrap">Phone</th></sc-if>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Niche</th>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Primary service</th>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Status</th>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Fit reason</th>
+              <th style="position:sticky;top:0;z-index:2;background:#fbfbfb;padding:10px 12px;border-bottom:1px solid #e2e5e5;text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:#59646a">Icebreaker</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="8">
+              <tr tabIndex="0" onClick="{{ r.open }}" onKeyDown="{{ r.onKeyDown }}" style="border-bottom:1px solid #f2f3f3;cursor:pointer" style-hover="background:#f9fafa">
+                <td style="padding:{{ g.cellPad }};vertical-align:middle"><input type="checkbox" aria-label="Select lead" checked="{{ r.selected }}" onChange="{{ r.onSelect }}" onClick="{{ r.stopLink }}" style="width:15px;height:15px;accent-color:#0a6a72" /></td>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle;white-space:nowrap">
+                  <sc-if value="{{ r.processing }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;align-items:center;gap:7px;color:#8b959a;font:400 12px/1 var(--font-mono)"><span style="width:6px;height:6px;border-radius:50%;background:#0a6a72;animation:ib-pulse 1.4s ease-in-out infinite"></span>—</div>
+                  </sc-if>
+                  <sc-if value="{{ r.score }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex;align-items:center;gap:10px">
+                      <span style="font:500 19px/1 var(--font-mono);font-variant-numeric:tabular-nums;color:{{ r.scoreColor }};min-width:24px;display:inline-block">{{ r.score }}</span>
+                      <span style="display:flex;align-items:flex-end;gap:1.5px;height:15px">
+                        <sc-for list="{{ r.ticks }}" as="t" hint-placeholder-count="10"><span style="width:3px;height:15px;background:{{ t.bg }}"></span></sc-for>
+                      </span>
+                    </div>
+                  </sc-if>
+                </td>
+                <sc-if value="{{ g.showName }}" hint-placeholder-val="{{ true }}"><td style="padding:{{ g.cellPad }};vertical-align:middle;font-weight:500;white-space:nowrap">{{ r.name }}</td></sc-if>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle;white-space:nowrap">
+                  <a href="{{ r.website }}" target="_blank" rel="noreferrer" onClick="{{ r.stopLink }}" style="display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:12px">
+                    <span style="width:14px;height:14px;border-radius:3px;background:#eef2f2;border:1px solid #dde5e5"></span>{{ r.domain }}
+                  </a>
+                  <a href="{{ r.linkedin }}" target="_blank" rel="noreferrer" onClick="{{ r.stopLink }}" title="LinkedIn" style="margin-left:8px;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #dde5e5;border-radius:3px;font:500 10px/1 var(--font-mono);color:#3c5a8a;vertical-align:middle">in</a>
+                </td>
+                <sc-if value="{{ g.showEmail }}" hint-placeholder-val="{{ true }}"><td style="padding:{{ g.cellPad }};vertical-align:middle;font-family:var(--font-mono);font-size:12px;color:#59646a;white-space:nowrap">{{ r.email }}</td></sc-if>
+                <sc-if value="{{ g.showPhone }}" hint-placeholder-val="{{ true }}"><td style="padding:{{ g.cellPad }};vertical-align:middle;font-family:var(--font-mono);font-size:12px;color:#59646a;white-space:nowrap">{{ r.phone }}</td></sc-if>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle"><span style="display:inline-block;padding:3px 8px;background:#f2f4f4;border-radius:3px;font-size:12px;color:#59646a;white-space:nowrap">{{ r.niche }}</span></td>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#59646a" title="{{ r.service }}">{{ r.service }}</td>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle"><span style="display:inline-block;padding:3px 8px;border-radius:3px;font-size:12px;white-space:nowrap;color:{{ r.statusFg }};background:{{ r.statusBg }}">{{ r.statusLabel }}</span></td>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#59646a" title="{{ r.reason }}">{{ r.reason }}</td>
+                <td style="padding:{{ g.cellPad }};vertical-align:middle">
+                  <div style="display:flex;align-items:center;gap:10px;max-width:300px">
+                    <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#59646a" title="{{ r.icebreaker }}">{{ r.icebreakerPreview }}</span>
+                    <button onClick="{{ r.onCopy }}" style="flex:none;height:26px;padding:0 9px;background:#fff;border:1px solid #dde0e0;border-radius:3px;font-size:12px;color:{{ r.copyFg }};cursor:pointer">{{ r.copyLabel }}</button>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </sc-if>
+    </sc-if>
+
+    <sc-if value="{{ g.mobile }}" hint-placeholder-val="{{ false }}">
+    <sc-if value="{{ g.hasRows }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;gap:10px;margin-top:14px">
+        <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="6">
+          <div tabIndex="0" onClick="{{ r.open }}" onKeyDown="{{ r.onKeyDown }}" style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:14px;cursor:pointer">
+            <div style="display:flex;align-items:flex-start;gap:14px">
+              <div style="flex:1;min-width:0">
+                <sc-if value="{{ g.showName }}" hint-placeholder-val="{{ true }}"><div style="font-weight:500;font-size:15px">{{ r.name }}</div></sc-if>
+                <div style="font-size:13px;color:#59646a">{{ r.company }}</div>
+                <div style="margin-top:8px"><span style="display:inline-block;padding:3px 8px;background:#f2f4f4;border-radius:3px;font-size:12px;color:#59646a">{{ r.niche }}</span></div>
+              </div>
+              <div style="flex:none;text-align:right">
+                <sc-if value="{{ r.processing }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;align-items:center;gap:6px;font:400 12px/1 var(--font-mono);color:#8b959a"><span style="width:6px;height:6px;border-radius:50%;background:#0a6a72;animation:ib-pulse 1.4s ease-in-out infinite"></span>Scoring</div>
+                </sc-if>
+                <sc-if value="{{ r.score }}" hint-placeholder-val="{{ true }}">
+                  <div style="font:500 28px/1 var(--font-mono);font-variant-numeric:tabular-nums;color:{{ r.scoreColor }}">{{ r.score }}</div>
+                  <div style="display:flex;justify-content:flex-end;align-items:flex-end;gap:1.5px;height:12px;margin-top:6px">
+                    <sc-for list="{{ r.ticks }}" as="t" hint-placeholder-count="10"><span style="width:3px;height:12px;background:{{ t.bg }}"></span></sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="margin-top:12px;padding:11px 12px;background:#f8f9f9;border:1px solid #eceeee;border-radius:6px 6px 6px 2px;font-size:13px;color:#3c464a;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.icebreakerPreview }}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px">
+              <span style="display:inline-block;padding:3px 8px;border-radius:3px;font-size:12px;color:{{ r.statusFg }};background:{{ r.statusBg }}">{{ r.statusLabel }}</span>
+              <button onClick="{{ r.onCopy }}" style="height:40px;padding:0 14px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-size:13px;font-weight:500;color:{{ r.copyFg }};cursor:pointer">{{ r.copyLabel }} icebreaker</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    </sc-if>
+
+    <sc-if value="{{ g.hasRows }}" hint-placeholder-val="{{ true }}">
+      <div class="m-col" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px">
+        <div style="font:400 12px/1 var(--font-mono);color:#8b959a">{{ g.rangeLabel }}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <button onClick="{{ g.prev }}" style="height:34px;padding:0 12px;background:#fff;border:1px solid #dde0e0;border-radius:4px;cursor:pointer;opacity:{{ g.prevOpacity }}">Previous</button>
+          <span style="font:400 12px/1 var(--font-mono);color:#59646a">{{ g.pageLabel }}</span>
+          <button onClick="{{ g.next }}" style="height:34px;padding:0 12px;background:#fff;border:1px solid #dde0e0;border-radius:4px;cursor:pointer;opacity:{{ g.nextOpacity }}">Next</button>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+  </sc-if>
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+  <main class="m-pad" style="max-width:1280px;margin:0 auto;padding:20px 24px 90px">
+    <button onClick="{{ d.back }}" style="background:none;border:0;padding:0;color:#0a6a72;font-size:13px;cursor:pointer">← {{ d.backLabel }}</button>
+
+    <div class="m-col" style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-top:14px">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <sc-if value="{{ d.showName }}" hint-placeholder-val="{{ true }}">
+            <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:32px;letter-spacing:-0.01em">{{ d.name }}</h1>
+          </sc-if>
+          <span style="display:inline-block;padding:3px 8px;border-radius:3px;font-size:12px;color:{{ d.statusFg }};background:{{ d.statusBg }}">{{ d.statusLabel }}</span>
+        </div>
+        <div style="margin-top:6px;color:#59646a">{{ d.company }} · {{ d.role }} · {{ d.niche }}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-family:var(--font-mono);font-size:12px">
+          <a href="{{ d.website }}" target="_blank" rel="noreferrer">{{ d.domain }} ↗</a>
+          <a href="{{ d.linkedin }}" target="_blank" rel="noreferrer">{{ d.linkedinLabel }} ↗</a>
+          <sc-if value="{{ d.showEmail }}" hint-placeholder-val="{{ true }}"><span style="color:#59646a">{{ d.email }}</span></sc-if>
+          <sc-if value="{{ d.showPhone }}" hint-placeholder-val="{{ true }}"><span style="color:#59646a">{{ d.phone }}</span></sc-if>
+        </div>
+      </div>
+      <button onClick="{{ d.rescore }}" style="flex:none;height:38px;padding:0 14px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-weight:500;cursor:pointer">{{ d.rescoreLabel }}</button>
+    </div>
+
+    <sc-if value="{{ d.partial }}" hint-placeholder-val="{{ false }}">
+      <div role="alert" style="margin-top:16px;padding:12px 14px;background:#fdf7ec;border:1px solid #ecdfc4;border-left:3px solid #9a6410;border-radius:4px;font-size:13px;color:#7a5210">{{ d.partialNotice }}</div>
+    </sc-if>
+
+    <sc-if value="{{ d.processing }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:16px;background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:28px">
+        <div style="display:flex;align-items:center;gap:10px;font:400 13px/1 var(--font-mono);color:#0a6a72"><span style="width:7px;height:7px;border-radius:50%;background:#0a6a72;animation:ib-pulse 1.4s ease-in-out infinite"></span>Reading the website and the LinkedIn page</div>
+        <div style="margin-top:18px;display:grid;gap:12px;max-width:520px">
+          <div style="height:14px;border-radius:3px;background:linear-gradient(90deg,#eef0f0 25%,#f7f8f8 37%,#eef0f0 63%);background-size:320px 100%;animation:ib-shimmer 1.3s linear infinite"></div>
+          <div style="height:14px;width:72%;border-radius:3px;background:linear-gradient(90deg,#eef0f0 25%,#f7f8f8 37%,#eef0f0 63%);background-size:320px 100%;animation:ib-shimmer 1.3s linear infinite"></div>
+          <div style="height:14px;width:54%;border-radius:3px;background:linear-gradient(90deg,#eef0f0 25%,#f7f8f8 37%,#eef0f0 63%);background-size:320px 100%;animation:ib-shimmer 1.3s linear infinite"></div>
+        </div>
+        <p style="margin:20px 0 0;max-width:52ch;color:#59646a">The score, the criteria breakdown and the icebreaker appear here as soon as both sources have been read. Nothing is lost if you navigate away.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ d.scored }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ d.gridStyle }};margin-top:16px">
+      <section style="grid-area:score;background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:22px">
+        <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">ICP fit score</div>
+        <div style="display:flex;align-items:flex-end;gap:18px;margin-top:16px">
+          <div style="font:500 72px/0.85 var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-0.03em;color:{{ d.scoreColor }}">{{ d.score }}<span style="font-size:20px;color:#8b959a">/10</span></div>
+          <div style="display:flex;align-items:flex-end;gap:3px;height:56px">
+            <sc-for list="{{ d.ticks }}" as="t" hint-placeholder-count="10"><div style="width:6px;height:56px;background:{{ t.bg }}"></div></sc-for>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-weight:500;color:{{ d.scoreColor }}">{{ d.band }}</div>
+        <p style="margin:10px 0 0;color:#3c464a">{{ d.reason }}</p>
+      </section>
+
+      <section style="grid-area:ice;background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:22px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Personalised icebreaker</div>
+          <div style="font:400 11px/1 var(--font-mono);color:#8b959a">{{ d.charCount }}</div>
+        </div>
+        <div style="margin-top:14px;padding:18px 20px;background:#f7f8f8;border:1px solid #e8eaea;border-radius:8px 8px 8px 2px;font-size:16px;line-height:1.55">{{ d.icebreaker }}</div>
+        <div class="m-col" style="display:flex;align-items:center;gap:12px;margin-top:16px">
+          <button onClick="{{ d.onCopy }}" style="height:44px;padding:0 20px;background:{{ d.copyBg }};color:#fff;border:0;border-radius:4px;font-weight:500;font-size:15px;cursor:pointer">{{ d.copyLabel }}</button>
+          <span style="font-size:12px;color:#8b959a">{{ d.toneNote }}</span>
+        </div>
+      </section>
+
+      <section style="grid-area:crit;background:#fff;border:1px solid #e2e5e5;border-radius:8px;overflow:hidden">
+        <div style="padding:16px 18px;border-bottom:1px solid #eceeee">
+          <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Criteria used</div>
+          <div style="margin-top:6px;font-size:12px;color:#8b959a">{{ d.activeLabel }}</div>
+        </div>
+        <sc-for list="{{ d.criteria }}" as="c" hint-placeholder-count="6">
+          <div onClick="{{ c.select }}" tabIndex="0" style="display:grid;grid-template-columns:1fr auto;gap:8px;padding:14px 18px 14px 15px;border-bottom:1px solid #f2f3f3;border-left:3px solid {{ c.edge }};background:{{ c.bg }};cursor:pointer" style-hover="background:#f8fafa">
+            <div style="min-width:0">
+              <div style="font-weight:500">{{ c.name }}</div>
+              <div style="margin-top:3px;font-size:12px;color:#8b959a">{{ c.type }} · {{ c.weight }} · {{ c.evLabel }}</div>
+              <div style="margin-top:6px;font-size:13px;color:#59646a">{{ c.note }}</div>
+            </div>
+            <div style="text-align:right;white-space:nowrap">
+              <span style="display:inline-block;padding:3px 8px;border-radius:3px;font-size:12px;color:{{ c.resultColor }};background:{{ c.resultBg }}">{{ c.resultLabel }}</span>
+              <div style="margin-top:6px;font:400 12px/1 var(--font-mono);font-variant-numeric:tabular-nums;color:#59646a">{{ c.points }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+
+      <section style="grid-area:ev;background:#fff;border:1px solid #e2e5e5;border-radius:8px;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #eceeee">
+          <div>
+            <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Evidence used</div>
+            <div style="margin-top:6px;font-size:12px;color:#8b959a">{{ d.evCountLabel }} · click a snippet to jump to its criterion</div>
+          </div>
+          <sc-if value="{{ d.hasActive }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ d.clearActive }}" style="height:30px;padding:0 10px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:12px;cursor:pointer">Clear link</button>
+          </sc-if>
+        </div>
+        <div style="padding:14px 18px;display:grid;gap:10px">
+          <sc-for list="{{ d.evidence }}" as="e" hint-placeholder-count="4">
+            <div onClick="{{ e.select }}" tabIndex="0" style="display:flex;gap:12px;padding:12px 14px;border:1px solid {{ e.edge }};background:{{ e.bg }};border-radius:6px;cursor:pointer" style-hover="border-color:#c9d3d3">
+              <div style="flex:none"><span style="display:inline-block;padding:3px 7px;border-radius:3px;font:500 11px/1.3 var(--font-mono);color:{{ e.srcFg }};background:{{ e.srcBg }}">{{ e.source }}</span></div>
+              <div style="min-width:0">
+                <div style="font:400 12px/1.4 var(--font-mono);color:#8b959a">{{ e.location }}</div>
+                <div style="margin-top:6px;font-size:14px">“{{ e.snippet }}”</div>
+                <div style="margin-top:7px;font-size:12px;color:#59646a">Supports: {{ e.supports }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="grid-area:meta;background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:18px">
+        <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Metadata</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:14px;font-size:13px">
+          <div><div style="color:#8b959a">Scored</div><div style="margin-top:3px;font-family:var(--font-mono)">{{ d.scoredAt }}</div></div>
+          <div><div style="color:#8b959a">Criteria version</div><div style="margin-top:3px;font-family:var(--font-mono)">{{ d.version }}</div></div>
+          <div><div style="color:#8b959a">Time to score</div><div style="margin-top:3px;font-family:var(--font-mono)">{{ d.duration }}</div></div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+  </main>
+  </sc-if>
+  <sc-if value="{{ isIcp }}" hint-placeholder-val="{{ false }}">
+  <main class="m-pad" style="max-width:1280px;margin:0 auto;padding:24px 24px 120px">
+    <div>
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:500;font-size:30px;letter-spacing:-0.01em">ICP criteria</h1>
+      <p style="margin:8px 0 0;max-width:70ch;color:#59646a">These criteria decide every score. Write them in your own words, say where to look, and weight what matters. Changes apply to new leads only.</p>
+    </div>
+
+    <div class="m-stack" style="display:grid;grid-template-columns:1fr 340px;gap:16px;margin-top:20px;align-items:start">
+      <div style="display:grid;gap:16px;min-width:0">
+        <sc-if value="{{ k.empty }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:32px">
+            <div style="font-family:var(--font-display);font-size:24px">Define what a good lead looks like</div>
+            <p style="margin:10px 0 0;max-width:56ch;color:#59646a">Nothing is scored until there is at least one criterion. Start with these four and edit them, or write your own.</p>
+            <div style="display:grid;gap:8px;margin-top:18px">
+              <sc-for list="{{ k.starters }}" as="st" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #e8eaea;border-radius:6px">
+                  <div><div style="font-weight:500">{{ st.name }}</div><div style="font-size:12px;color:#8b959a">{{ st.meta }}</div></div>
+                  <button onClick="{{ st.add }}" style="height:32px;padding:0 12px;background:#0a6a72;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer">Add</button>
+                </div>
+              </sc-for>
+            </div>
+            <button onClick="{{ k.addCriterion }}" style="margin-top:16px;height:38px;padding:0 14px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-weight:500;cursor:pointer">Write a criterion from scratch</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ k.hasRows }}" hint-placeholder-val="{{ true }}">
+        <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid #eceeee">
+            <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Criteria · drag to reorder</div>
+            <button onClick="{{ k.addCriterion }}" style="height:32px;padding:0 12px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer">Add criterion</button>
+          </div>
+          <sc-for list="{{ k.rows }}" as="c" hint-placeholder-count="7">
+            <div draggable="true" onDragStart="{{ c.onDragStart }}" onDragOver="{{ c.onDragOver }}" onDrop="{{ c.onDrop }}" style="border-bottom:1px solid #f2f3f3;background:{{ c.rowBg }};opacity:{{ c.rowOpacity }}">
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px">
+                <div class="m-hide" style="flex:none;width:14px;margin-top:2px;color:#c3caca;cursor:grab;font-size:13px;line-height:1">⠿</div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <span style="font-weight:500;color:{{ c.nameColor }}">{{ c.name }}</span>
+                    <span style="font:400 11px/1 var(--font-mono);color:#8b959a">{{ c.weightLabel }}</span>
+                  </div>
+                  <div style="margin-top:3px;font-size:12px;color:#8b959a">{{ c.meta }} · {{ c.points }}</div>
+                  <sc-if value="{{ c.description }}" hint-placeholder-val="{{ true }}">
+                    <div style="margin-top:6px;font-size:13px;color:#59646a">{{ c.description }}</div>
+                  </sc-if>
+                </div>
+                <div style="flex:none;display:flex;align-items:center;gap:6px">
+                  <button onClick="{{ c.onToggle }}" aria-label="Enabled" style="width:34px;height:18px;padding:2px;border:0;border-radius:9px;background:{{ c.switchBg }};cursor:pointer"><span style="display:block;width:14px;height:14px;border-radius:50%;background:#fff;transform:{{ c.knob }};transition:transform .15s ease"></span></button>
+                  <button onClick="{{ c.onEdit }}" style="height:30px;padding:0 10px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:12px;cursor:pointer">{{ c.editLabel }}</button>
+                  <button onClick="{{ c.onDup }}" class="m-hide" title="Duplicate" style="width:30px;height:30px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:12px;cursor:pointer">⧉</button>
+                  <button onClick="{{ c.onUp }}" title="Move up" style="width:30px;height:30px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:12px;cursor:pointer">↑</button>
+                  <button onClick="{{ c.onDown }}" title="Move down" style="width:30px;height:30px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-size:12px;cursor:pointer">↓</button>
+                  <button onClick="{{ c.onDel }}" title="Delete" style="width:30px;height:30px;background:#fff;border:1px solid #e8d6d3;border-radius:4px;font-size:12px;color:#9e3327;cursor:pointer">✕</button>
+                </div>
+              </div>
+              <sc-if value="{{ c.inline }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:4px 18px 18px 44px;display:grid;gap:14px">
+                  <div>
+                    <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:5px">Name</label>
+                    <input type="text" value="{{ c.name }}" onChange="{{ c.onName }}" style="width:100%;height:38px;padding:0 10px;border:1px solid #dde0e0;border-radius:4px" />
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:5px">What to look for</label>
+                    <textarea rows="3" value="{{ c.description }}" onChange="{{ c.onDesc }}" style="width:100%;padding:9px 10px;border:1px solid #dde0e0;border-radius:4px;resize:vertical"></textarea>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:12px">
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:5px">Type</label>
+                      <select value="{{ c.type }}" onChange="{{ c.onType }}" style="height:38px;padding:0 8px;border:1px solid #dde0e0;border-radius:4px">
+                        <option value="must_have">Must have</option>
+                        <option value="nice_to_have">Nice to have</option>
+                        <option value="disqualifier">Disqualifier</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:5px">Weight</label>
+                      <select value="{{ c.weight }}" onChange="{{ c.onWeight }}" disabled="{{ c.isDq }}" style="height:38px;padding:0 8px;border:1px solid #dde0e0;border-radius:4px">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:5px">Source hint</label>
+                      <select value="{{ c.source }}" onChange="{{ c.onSource }}" style="height:38px;padding:0 8px;border:1px solid #dde0e0;border-radius:4px">
+                        <option value="website">Website</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="both">Both</option>
+                      </select>
+                    </div>
+                  </div>
+                  <sc-if value="{{ c.isDq }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:10px 12px;background:#fdf3f1;border-left:3px solid #9e3327;border-radius:4px;font-size:12px;color:#7d2b21">A disqualifier has no weight. When it is met, the lead scores 2 regardless of everything else.</div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:18px">
+          <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Weight budget</div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin-top:12px">
+            <span style="font:500 34px/1 var(--font-mono);font-variant-numeric:tabular-nums">{{ k.budget }}</span>
+            <span style="color:#59646a">{{ k.budgetLabel }}</span>
+          </div>
+          <p style="margin:10px 0 0;font-size:13px;color:#59646a">{{ k.pointNote }}</p>
+          <p style="margin:8px 0 0;font-size:13px;color:#59646a">{{ k.dqNote }}</p>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:18px">
+          <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Icebreaker guidance</div>
+          <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:14px">
+            <div>
+              <div style="font-size:12px;font-weight:500;color:#59646a;margin-bottom:8px">Tone</div>
+              <div style="display:flex;gap:6px">
+                <sc-for list="{{ k.tones }}" as="t" hint-placeholder-count="3">
+                  <button onClick="{{ t.set }}" style="height:34px;padding:0 14px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid #dde0e0;border-radius:4px;font-size:13px;cursor:pointer">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:500;color:#59646a;margin-bottom:8px">Maximum length</div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <input type="number" min="120" max="600" step="20" value="{{ k.maxLength }}" onChange="{{ k.onMaxLength }}" style="width:100px;height:34px;padding:0 10px;border:1px solid #dde0e0;border-radius:4px;font-family:var(--font-mono)" />
+                <span style="font-size:13px;color:#8b959a">characters</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">Extra instruction (optional)</label>
+            <textarea rows="2" value="{{ k.instruction }}" onChange="{{ k.onInstruction }}" placeholder="Always reference something specific from their site, never mention their funding" style="width:100%;padding:9px 10px;border:1px solid #dde0e0;border-radius:4px;resize:vertical"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <aside style="position:sticky;top:72px;background:#fff;border:1px solid #e2e5e5;border-radius:8px;padding:18px">
+        <div style="font:500 11px/1 var(--font-mono);letter-spacing:0.09em;text-transform:uppercase;color:#8b959a">Live preview</div>
+        <div style="margin-top:6px;font-size:12px;color:#8b959a">Your current criteria applied to one sample lead.</div>
+        <div style="margin-top:14px;font-weight:500">{{ k.pvCompany }}</div>
+        <div style="display:flex;align-items:flex-end;gap:14px;margin-top:14px">
+          <div style="font:500 48px/0.85 var(--font-mono);font-variant-numeric:tabular-nums;letter-spacing:-0.02em;color:{{ k.pvColor }}">{{ k.pvScore }}<span style="font-size:15px;color:#8b959a">/10</span></div>
+          <div style="display:flex;align-items:flex-end;gap:2px;height:34px">
+            <sc-for list="{{ k.pvTicks }}" as="t" hint-placeholder-count="10"><div style="width:5px;height:34px;background:{{ t.bg }}"></div></sc-for>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:13px;font-weight:500;color:{{ k.pvColor }}">{{ k.pvBand }}</div>
+        <p style="margin:8px 0 0;font-size:13px;color:#59646a">{{ k.pvReason }}</p>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid #f2f3f3;display:grid;gap:7px">
+          <sc-for list="{{ k.pvLines }}" as="p" hint-placeholder-count="6">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:12px">
+              <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#59646a">{{ p.name }}</span>
+              <span style="flex:none;font-family:var(--font-mono);color:{{ p.color }}">{{ p.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </aside>
+    </div>
+
+    <sc-if value="{{ k.dirty }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed;left:0;right:0;bottom:0;z-index:40;background:#13181a;color:#fff;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span style="font-size:13px">Unsaved changes to your ICP criteria. New leads keep using the saved version until you save.</span>
+        <div style="display:flex;gap:10px">
+          <button onClick="{{ k.discard }}" style="height:38px;padding:0 14px;background:none;color:#b9c0c2;border:1px solid #3a4247;border-radius:4px;font-weight:500;cursor:pointer">Discard</button>
+          <button onClick="{{ k.save }}" style="height:38px;padding:0 16px;background:#fff;color:#13181a;border:0;border-radius:4px;font-weight:500;cursor:pointer">Save changes</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ k.sheet }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed;inset:0;z-index:50;background:#fff;overflow:auto;padding:18px 20px 40px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-weight:500;font-size:17px">Edit criterion</span>
+          <button onClick="{{ k.closeSheet }}" style="height:40px;padding:0 14px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-weight:500;cursor:pointer">Done</button>
+        </div>
+        <div style="display:grid;gap:18px;margin-top:20px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">Name</label>
+            <input type="text" value="{{ k.editRow.name }}" onChange="{{ k.editRow.onName }}" style="width:100%;height:46px;padding:0 12px;border:1px solid #dde0e0;border-radius:4px" />
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">What to look for</label>
+            <textarea rows="4" value="{{ k.editRow.description }}" onChange="{{ k.editRow.onDesc }}" style="width:100%;padding:10px 12px;border:1px solid #dde0e0;border-radius:4px;resize:vertical"></textarea>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">Type</label>
+            <select value="{{ k.editRow.type }}" onChange="{{ k.editRow.onType }}" style="width:100%;height:46px;padding:0 10px;border:1px solid #dde0e0;border-radius:4px">
+              <option value="must_have">Must have</option>
+              <option value="nice_to_have">Nice to have</option>
+              <option value="disqualifier">Disqualifier</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">Weight</label>
+            <select value="{{ k.editRow.weight }}" onChange="{{ k.editRow.onWeight }}" disabled="{{ k.editRow.isDq }}" style="width:100%;height:46px;padding:0 10px;border:1px solid #dde0e0;border-radius:4px">
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:500;color:#59646a;margin-bottom:6px">Source hint</label>
+            <select value="{{ k.editRow.source }}" onChange="{{ k.editRow.onSource }}" style="width:100%;height:46px;padding:0 10px;border:1px solid #dde0e0;border-radius:4px">
+              <option value="website">Website</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="both">Both</option>
+            </select>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid #f2f3f3">
+            <span style="font-weight:500">Enabled</span>
+            <button onClick="{{ k.editRow.onToggle }}" aria-label="Enabled" style="width:44px;height:26px;padding:3px;border:0;border-radius:13px;background:{{ k.editRow.switchBg }};cursor:pointer"><span style="display:block;width:20px;height:20px;border-radius:50%;background:#fff;transform:{{ k.editRow.knob }};transition:transform .15s ease"></span></button>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button onClick="{{ k.editRow.onDup }}" style="flex:1;height:46px;background:#fff;border:1px solid #dde0e0;border-radius:4px;font-weight:500;cursor:pointer">Duplicate</button>
+            <button onClick="{{ k.editRow.onDel }}" style="flex:1;height:46px;background:#fff;border:1px solid #e8d6d3;color:#9e3327;border-radius:4px;font-weight:500;cursor:pointer">Delete</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ dialog }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:60;background:#13181a66;display:grid;place-items:center;padding:20px" onClick="{{ closeDialog }}">
+    <div role="dialog" aria-modal="true" onClick="{{ stop }}" style="width:100%;max-width:420px;background:#fff;border-radius:8px;box-shadow:0 20px 60px #13181a2e;padding:24px;animation:ib-rise .2s ease both">
+      <div style="font-weight:500;font-size:17px">{{ dialogTitle }}</div>
+      <div style="margin-top:10px;font-size:13px;color:#59646a">{{ dialogBody }}</div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px">
+        <button onClick="{{ closeDialog }}" style="height:38px;padding:0 16px;background:#fff;border:1px solid #cfd4d4;border-radius:4px;font-weight:500;cursor:pointer">{{ dialogCancel }}</button>
+        <button onClick="{{ confirmDialog }}" style="height:38px;padding:0 16px;background:{{ dialogConfirmBg }};color:#fff;border:0;border-radius:4px;font-weight:500;cursor:pointer">{{ dialogConfirm }}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:10px;padding:11px 16px;background:#13181a;color:#fff;border-radius:5px;box-shadow:0 8px 30px #13181a3d;font-size:13px;animation:ib-rise .2s ease both">
+    <span style="width:6px;height:6px;border-radius:50%;background:#5fbf95"></span>{{ toast }}
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;leadsPerPage&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;min&quot;:4,&quot;max&quot;:15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Leads grid&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Comfortable&quot;,&quot;Compact&quot;],&quot;default&quot;:&quot;Comfortable&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Leads grid&quot;},&quot;startRoute&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;landing&quot;,&quot;leads&quot;,&quot;form&quot;,&quot;icp&quot;],&quot;default&quot;:&quot;landing&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+const RESULT_LABEL = { met: 'Met', partial: 'Partially met', not_met: 'Not met', unknown: 'Not verified' };
+const TYPE_LABEL = { must_have: 'Must have', nice_to_have: 'Nice to have', disqualifier: 'Disqualifier' };
+const SOURCE_LABEL = { website: 'Website', linkedin: 'LinkedIn', both: 'Website and LinkedIn' };
+const STATUS = {
+  scored: { label: 'Scored', fg: '#2c6a4c', bg: '#e9f2ec' },
+  processing: { label: 'Processing', fg: '#0a6a72', bg: '#e6f0f1' },
+  needs_review: { label: 'Needs review', fg: '#9a6410', bg: '#fdf7ec' },
+};
+
+class Component extends DCLogic {
+  state = {
+    route: { name: 'landing', id: null },
+    loading: true,
+    leads: [], criteria: [], savedCriteria: [], starters: [],
+    guidance: { tone: 'Direct', maxLength: 320, instruction: '' }, savedGuidance: null,
+    sample: null,
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1280,
+    drawer: false,
+    hidden: { fullName: false, email: false, phone: false },
+    sortKey: 'score', sortDir: 'desc',
+    search: '', minScore: 1, niches: [], statuses: [],
+    filtersOpen: false, columnsOpen: false, page: 0,
+    selected: {}, copied: null, toast: null, dialog: null,
+    form: { fullName: '', email: '', phone: '', website: '', linkedin: '' }, cc: '+1',
+    touched: {}, errors: {}, formError: null,
+    phase: 'idle', steps: [], newLeadId: null, sim: 'scored',
+    activeCriterion: null, editingId: null, dragId: null, detailBusy: false,
+    heroScore: 0,
+  };
+
+  /* scroll behaviour for the marketing page: reveal on enter, nav glass on scroll */
+  seen = typeof WeakSet !== 'undefined' ? new WeakSet() : null;
+  setupReveal() {
+    if (typeof IntersectionObserver === 'undefined') return;
+    if (!this.io) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); this.io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    }
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (this.seen && this.seen.has(el)) return;
+      if (this.seen) this.seen.add(el);
+      this.io.observe(el);
+    });
+  }
+  syncNav = () => {
+    const nav = document.querySelector('.ib-nav');
+    if (!nav) return;
+    const stuck = window.scrollY > 72;
+    nav.classList.toggle('is-stuck', stuck);
+  };
+
+  timers = [];
+  later(fn, ms) { const t = setTimeout(fn, ms); this.timers.push(t); return t; }
+
+  componentDidMount() {
+    import('./mock-data.js').then((m) => {
+      this.setState({
+        leads: m.leads.slice(), criteria: m.criteria.slice(),
+        savedCriteria: JSON.parse(JSON.stringify(m.criteria)),
+        guidance: Object.assign({}, m.guidance), savedGuidance: Object.assign({}, m.guidance),
+        sample: m.sampleLead, starters: m.starterCriteria, loading: false,
+      });
+    }).catch(() => this.setState({ loading: false }));
+    const sr = this.props.startRoute;
+    if (sr && sr !== 'landing') this.setState({ route: { name: sr, id: null } });
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    document.documentElement.classList.add('reveal-ready');
+    this.setupReveal();
+    window.addEventListener('scroll', this.syncNav, { passive: true });
+    this.syncNav();
+    this.later(() => this.setState({ heroScore: 90 }), 420);
+    if (!window.lucide) {
+      let tries = 0;
+      this.iconPoll = setInterval(() => {
+        tries++;
+        if (window.lucide || tries > 40) { clearInterval(this.iconPoll); this.forceUpdate(); }
+      }, 150);
+    }
+  }
+  componentDidUpdate() { this.setupReveal(); this.syncNav(); }
+  componentWillUnmount() {
+    this.timers.forEach(clearTimeout);
+    if (this.onResize) window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.syncNav);
+    if (this.io) this.io.disconnect();
+    if (this.iconPoll) clearInterval(this.iconPoll);
+  }
+
+  /* ---------- helpers ---------- */
+  band(s) {
+    if (s === null || s === undefined) return { c: '#8b959a', bg: '#f2f3f3', label: 'Not scored' };
+    if (s >= 8) return { c: '#2c6a4c', bg: '#e9f2ec', label: 'Strong fit' };
+    if (s >= 5) return { c: '#0a6a72', bg: '#e6f0f1', label: 'Possible fit' };
+    return { c: '#9e3327', bg: '#f8ece9', label: 'Poor fit' };
+  }
+  ticks(s) {
+    const b = this.band(s);
+    const out = [];
+    for (let i = 0; i < 10; i++) out.push({ key: i, bg: i < (s || 0) ? b.c : '#dfe3e3' });
+    return out;
+  }
+  fmtDate(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
+    return m + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+  fmtTime(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    let h = d.getHours(); const ampm = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12;
+    return h + ':' + String(d.getMinutes()).padStart(2, '0') + ' ' + ampm;
+  }
+  domain(url) { return String(url || '').replace(/^https?:\/\//, '').replace(/\/$/, ''); }
+  toast(msg) {
+    this.setState({ toast: msg });
+    this.later(() => this.setState({ toast: null }), 2400);
+  }
+  copyText(text, key) {
+    const done = () => {
+      this.setState({ copied: key });
+      this.toast('Icebreaker copied');
+      this.later(() => this.setState((s) => (s.copied === key ? { copied: null } : null)), 2000);
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, done); return; }
+    } catch (e) { /* fall through */ }
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) { /* ignore */ }
+    document.body.removeChild(ta); done();
+  }
+  dirty() {
+    return JSON.stringify(this.state.criteria) !== JSON.stringify(this.state.savedCriteria)
+      || JSON.stringify(this.state.guidance) !== JSON.stringify(this.state.savedGuidance);
+  }
+  nav(name, id) {
+    const jump = () => this.setState({ route: { name: name, id: id || null }, drawer: false, activeCriterion: null, editingId: null });
+    if (this.state.route.name === 'icp' && name !== 'icp' && this.dirty()) {
+      this.setState({ dialog: {
+        title: 'Leave without saving?',
+        body: 'Your criteria changes have not been saved. Leaving this screen discards them.',
+        confirm: 'Discard and leave', cancel: 'Stay here', tone: 'danger',
+        onConfirm: () => { this.setState({ criteria: JSON.parse(JSON.stringify(this.state.savedCriteria)), guidance: Object.assign({}, this.state.savedGuidance) }); jump(); },
+      } });
+      return;
+    }
+    jump();
+  }
+
+  /* ---------- form ---------- */
+  validate(field, valueRaw) {
+    const v = String(valueRaw || '').trim();
+    if (field === 'fullName') {
+      if (!v) return 'Enter the lead\u2019s full name.';
+      if (v.length < 2) return 'That is too short — use at least two characters.';
+      return null;
+    }
+    if (field === 'email') {
+      if (!v) return 'Enter an email address.';
+      if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) return 'That doesn\u2019t look like an email address. Check for a missing @ or domain.';
+      return null;
+    }
+    if (field === 'phone') {
+      if (!v) return 'Enter a phone number, including the country code.';
+      const digits = v.replace(/[^0-9]/g, '');
+      if (!v.startsWith('+')) return 'Start with a country code, like +1 (415) 555-0148.';
+      if (digits.length < 8) return 'That number looks incomplete — 8 or more digits after the country code.';
+      return null;
+    }
+    if (field === 'website') {
+      if (!v) return 'Enter the company website.';
+      const host = v.replace(/^https?:\/\//, '').split('/')[0];
+      if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(host)) return 'That doesn\u2019t look like a domain. Try something like acme.io.';
+      return null;
+    }
+    if (field === 'linkedin') {
+      if (!v) return 'Enter the LinkedIn company page or profile URL.';
+      if (!/linkedin\.com\/(company|in)\/[^\s\/]+/i.test(v)) return 'That doesn\u2019t look like a LinkedIn URL. It should start with linkedin.com/company/ or linkedin.com/in/.';
+      return null;
+    }
+    return null;
+  }
+  field(name) {
+    const st = this.state;
+    const value = st.form[name];
+    const error = st.errors[name] || null;
+    return {
+      value: value,
+      error: error,
+      border: error ? '#c46a5d' : '#cfd4d4',
+      onChange: (e) => {
+        const val = e.target.value;
+        this.setState((s) => {
+          const form = Object.assign({}, s.form); form[name] = val;
+          const errors = Object.assign({}, s.errors);
+          if (errors[name]) { const err = this.validate(name, val); if (err) errors[name] = err; else delete errors[name]; }
+          return { form: form, errors: errors };
+        });
+      },
+      onBlur: () => {
+        this.setState((s) => {
+          const form = Object.assign({}, s.form);
+          if (name === 'website' && form.website.trim() && !/^https?:\/\//i.test(form.website)) form.website = 'https://' + form.website.trim();
+          if (name === 'linkedin' && form.linkedin.trim() && !/^https?:\/\//i.test(form.linkedin)) form.linkedin = 'https://' + form.linkedin.trim().replace(/^www\./, '');
+          const errors = Object.assign({}, s.errors);
+          const err = this.validate(name, form[name]);
+          if (err) errors[name] = err; else delete errors[name];
+          return { form: form, errors: errors, touched: Object.assign({}, s.touched, { [name]: true }) };
+        });
+      },
+    };
+  }
+  submit = () => {
+    const errors = {};
+    ['fullName', 'email', 'phone', 'website', 'linkedin'].forEach((f) => {
+      const err = this.validate(f, this.state.form[f]);
+      if (err) errors[f] = err;
+    });
+    const n = Object.keys(errors).length;
+    if (n) {
+      this.setState({ errors: errors, formError: n === 1 ? 'One field needs attention before we can score this lead.' : n + ' fields need attention before we can score this lead.' });
+      return;
+    }
+    const dom = this.domain(this.state.form.website);
+    const partial = this.state.sim === 'partial';
+    const steps = [
+      { id: 'site', label: 'Reading ' + dom, detail: 'Homepage, pricing, about', state: 'active' },
+      { id: 'li', label: 'Reading LinkedIn page', detail: 'About, people, jobs', state: 'pending' },
+      { id: 'score', label: 'Scoring against your ICP', detail: '7 criteria, 19 points of weight', state: 'pending' },
+    ];
+    this.setState({ phase: 'processing', formError: null, steps: steps });
+    const set = (i, patch) => this.setState((s) => {
+      const st = s.steps.map((x, idx) => (idx === i ? Object.assign({}, x, patch) : x));
+      return { steps: st };
+    });
+    this.later(() => { set(0, { state: 'done', detail: '6 pages read, 4 snippets kept' }); set(1, { state: 'active' }); }, 1700);
+    this.later(() => {
+      if (partial) set(1, { state: 'failed', detail: 'No response after 8 seconds' });
+      else set(1, { state: 'done', detail: 'Employee count, 2 open roles' });
+      set(2, { state: 'active' });
+    }, 3500);
+    this.later(() => { set(2, { state: 'done', detail: partial ? '5 of 7 criteria verified' : '7 of 7 criteria verified' }); }, 4800);
+    this.later(() => this.finish(partial), 5300);
+  };
+  finish(partial) {
+    const f = this.state.form;
+    const dom = this.domain(f.website);
+    const company = dom.split('.')[0].replace(/^./, (c) => c.toUpperCase());
+    const lead = {
+      id: 'ld_' + Math.random().toString(16).slice(2, 6),
+      fullName: f.fullName, email: f.email, phone: f.phone,
+      companyWebsite: f.website, linkedinUrl: f.linkedin,
+      companyName: company, role: '—', niche: 'B2B SaaS — unclassified',
+      primaryService: 'Read from ' + dom + ' — homepage and pricing',
+      icpFitScore: partial ? 6 : 8,
+      status: partial ? 'needs_review' : 'scored',
+      unreadableSource: partial ? 'linkedin' : null,
+      scoredAt: new Date().toISOString(),
+      durationMs: partial ? 9400 : 5200,
+      criteriaVersion: 'v4',
+      icpFitReason: partial
+        ? 'Scored on website evidence only — the LinkedIn page did not respond, so team size and hiring signals are unverified. The site alone clears two of three must-haves.'
+        : 'Site copy names a manual workflow on the homepage and the pricing page is per-seat and business-facing. Team size sits mid-band and there is an open revenue role.',
+      icebreaker: partial
+        ? 'Your site is direct about the manual side of the work, which is rarer than it should be. Curious who owns that process on your side today.'
+        : 'Your pricing page prices per seat but your homepage sells a process fix — that gap is usually where the interesting conversations are. Who owns that on your team?',
+      criteriaResults: [
+        { criterion: 'Team size 10\u2013200', type: 'must_have', weight: 5, result: partial ? 'unknown' : 'met', note: partial ? 'LinkedIn unreachable — no employee count available.' : 'LinkedIn lists 61 employees.' },
+        { criterion: 'Sells to other businesses', type: 'must_have', weight: 5, result: 'met', note: 'Per-seat pricing, business case studies.' },
+        { criterion: 'Manual-process pain point', type: 'must_have', weight: 4, result: 'met', note: 'Homepage hero names a manual workflow.' },
+        { criterion: 'Hiring sales or SDR roles', type: 'nice_to_have', weight: 3, result: partial ? 'unknown' : 'met', note: partial ? 'LinkedIn unreachable — job posts not checked.' : 'One revenue role posted this month.' },
+        { criterion: 'Runs outbound already', type: 'nice_to_have', weight: 2, result: 'partial', note: 'Demo form present, no SDR titles found.' },
+        { criterion: 'Staffing or recruiting agency', type: 'disqualifier', weight: null, result: 'not_met', note: 'Software company.' },
+      ],
+      evidence: [
+        { source: 'website', location: 'Homepage — hero', snippet: 'Stop running the same handover twice.', supports: ['Manual-process pain point'] },
+        { source: 'website', location: 'Pricing', snippet: '$29 per seat / month, billed annually. Team plans from 10 seats.', supports: ['Sells to other businesses'] },
+      ].concat(partial ? [] : [{ source: 'linkedin', location: 'Company page — About', snippet: '61 employees · Software Development', supports: ['Team size 10\u2013200'] }]),
+    };
+    this.setState((s) => ({ leads: [lead].concat(s.leads), phase: 'done', newLeadId: lead.id }));
+  }
+  resetForm = () => this.setState({
+    form: { fullName: '', email: '', phone: '', website: '', linkedin: '' },
+    errors: {}, touched: {}, formError: null, phase: 'idle', steps: [], newLeadId: null,
+  });
+
+  /* ---------- grid ---------- */
+  perPage() { return this.props.leadsPerPage || 8; }
+  filtered() {
+    const s = this.state;
+    const q = s.search.trim().toLowerCase();
+    let out = s.leads.filter((l) => {
+      if (q && !((l.fullName + ' ' + l.companyName + ' ' + l.niche).toLowerCase().includes(q))) return false;
+      if (s.niches.length && !s.niches.includes(l.niche.split(' — ')[0])) return false;
+      if (s.statuses.length && !s.statuses.includes(l.status)) return false;
+      if (s.minScore > 1) { if (l.icpFitScore === null || l.icpFitScore === undefined) return false; if (l.icpFitScore < s.minScore) return false; }
+      return true;
+    });
+    const dir = s.sortDir === 'asc' ? 1 : -1;
+    out = out.slice().sort((a, b) => {
+      if (s.sortKey === 'name') return a.fullName.localeCompare(b.fullName) * dir;
+      if (s.sortKey === 'date') return (new Date(a.scoredAt || a.submittedAt) - new Date(b.scoredAt || b.submittedAt)) * dir;
+      const av = a.icpFitScore === null || a.icpFitScore === undefined ? -1 : a.icpFitScore;
+      const bv = b.icpFitScore === null || b.icpFitScore === undefined ? -1 : b.icpFitScore;
+      return (av - bv) * dir;
+    });
+    return out;
+  }
+  filtersActive() {
+    const s = this.state;
+    return !!(s.search.trim() || s.niches.length || s.statuses.length || s.minScore > 1);
+  }
+  rowFor(l) {
+    const b = this.band(l.icpFitScore);
+    const st = STATUS[l.status];
+    const processing = l.status === 'processing';
+    return {
+      id: l.id, name: l.fullName, email: l.email, phone: l.phone,
+      company: l.companyName, domain: this.domain(l.companyWebsite), website: l.companyWebsite,
+      linkedin: l.linkedinUrl, niche: l.niche, service: l.primaryService,
+      score: l.icpFitScore, scoreColor: b.c, band: b.label,
+      ticks: this.ticks(l.icpFitScore), processing: processing,
+      reason: processing ? 'Waiting on both sources' : l.icpFitReason,
+      icebreaker: l.icebreaker || '',
+      icebreakerPreview: processing ? 'Written once the lead is scored' : l.icebreaker,
+      statusLabel: st.label, statusFg: st.fg, statusBg: st.bg,
+      date: this.fmtDate(l.scoredAt || l.submittedAt),
+      selected: !!this.state.selected[l.id],
+      copied: this.state.copied === 'row-' + l.id,
+      copyLabel: this.state.copied === 'row-' + l.id ? 'Copied' : 'Copy',
+      copyFg: this.state.copied === 'row-' + l.id ? '#2c6a4c' : '#59646a',
+      open: () => this.nav('detail', l.id),
+      onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.nav('detail', l.id); } },
+      onCopy: (e) => { e.stopPropagation(); if (l.icebreaker) this.copyText(l.icebreaker, 'row-' + l.id); else this.toast('No icebreaker yet — this lead is still processing'); },
+      onSelect: (e) => {
+        e.stopPropagation();
+        this.setState((s) => { const sel = Object.assign({}, s.selected); if (sel[l.id]) delete sel[l.id]; else sel[l.id] = true; return { selected: sel }; });
+      },
+      stopLink: (e) => e.stopPropagation(),
+    };
+  }
+  toggleHidden(k) { this.setState((s) => ({ hidden: Object.assign({}, s.hidden, { [k]: !s.hidden[k] }) })); }
+  setAllHidden(v) { this.setState({ hidden: { fullName: v, email: v, phone: v } }); }
+  toggleIn(listName, value) {
+    this.setState((s) => {
+      const cur = s[listName].slice();
+      const i = cur.indexOf(value);
+      if (i >= 0) cur.splice(i, 1); else cur.push(value);
+      return { [listName]: cur, page: 0 };
+    });
+  }
+  clearFilters = () => this.setState({ search: '', niches: [], statuses: [], minScore: 1, page: 0 });
+  sortBy(key) {
+    this.setState((s) => ({ sortKey: key, sortDir: s.sortKey === key ? (s.sortDir === 'desc' ? 'asc' : 'desc') : (key === 'name' ? 'asc' : 'desc'), page: 0 }));
+  }
+  copySelected = () => {
+    const ids = Object.keys(this.state.selected);
+    const text = this.state.leads.filter((l) => ids.includes(l.id) && l.icebreaker).map((l) => l.companyName + '\n' + l.icebreaker).join('\n\n');
+    if (!text) { this.toast('Nothing to copy — the selected leads are still processing'); return; }
+    this.copyText(text, 'bulk');
+    this.toast(ids.length + ' icebreakers copied');
+  };
+
+  /* ---------- detail ---------- */
+  detailLead() { return this.state.leads.find((l) => l.id === this.state.route.id) || null; }
+  rescore = () => {
+    const l = this.detailLead(); if (!l) return;
+    this.setState({ detailBusy: true });
+    this.later(() => { this.setState({ detailBusy: false }); this.toast('Lead re-scored — no change to the fit score'); }, 2600);
+  };
+
+  /* ---------- criteria ---------- */
+  weightBudget() {
+    const en = this.state.criteria.filter((c) => c.enabled && c.type !== 'disqualifier');
+    return en.reduce((a, c) => a + (c.weight || 0), 0);
+  }
+  scoreFrom(crits, results) {
+    const en = crits.filter((c) => c.enabled);
+    const dq = en.filter((c) => c.type === 'disqualifier').find((c) => results[c.name] === 'met');
+    if (dq) return { score: 2, dq: dq.name };
+    const weighted = en.filter((c) => c.type !== 'disqualifier');
+    const total = weighted.reduce((a, c) => a + (c.weight || 0), 0) || 1;
+    const got = weighted.reduce((a, c) => {
+      const r = results[c.name];
+      const f = r === 'met' ? 1 : r === 'partial' ? 0.5 : 0;
+      return a + (c.weight || 0) * f;
+    }, 0);
+    return { score: Math.max(1, Math.min(10, Math.round(1 + 9 * (got / total)))), dq: null };
+  }
+  setCrit(id, patch) {
+    this.setState((s) => ({ criteria: s.criteria.map((c) => (c.id === id ? Object.assign({}, c, patch) : c)) }));
+  }
+  addCriterion = () => {
+    const id = 'cr_' + Math.random().toString(16).slice(2, 6);
+    this.setState((s) => ({
+      criteria: s.criteria.concat([{ id: id, name: 'New criterion', description: '', type: 'nice_to_have', weight: 3, source: 'both', enabled: true }]),
+      editingId: id,
+    }));
+  };
+  addStarter(st) {
+    const id = 'cr_' + Math.random().toString(16).slice(2, 6);
+    this.setState((s) => ({ criteria: s.criteria.concat([Object.assign({ id: id, enabled: true }, st)]) }));
+  }
+  duplicate(id) {
+    this.setState((s) => {
+      const i = s.criteria.findIndex((c) => c.id === id);
+      if (i < 0) return null;
+      const copy = Object.assign({}, s.criteria[i], { id: 'cr_' + Math.random().toString(16).slice(2, 6), name: s.criteria[i].name + ' (copy)' });
+      const out = s.criteria.slice(); out.splice(i + 1, 0, copy);
+      return { criteria: out };
+    });
+  }
+  askDelete(c) {
+    this.setState({ dialog: {
+      title: 'Delete “' + c.name + '”?',
+      body: 'Existing lead scores won\u2019t change. New leads will be scored without this criterion.',
+      confirm: 'Delete criterion', cancel: 'Keep it', tone: 'danger',
+      onConfirm: () => this.setState((s) => ({ criteria: s.criteria.filter((x) => x.id !== c.id), editingId: null })),
+    } });
+  }
+  move(id, delta) {
+    this.setState((s) => {
+      const arr = s.criteria.slice();
+      const i = arr.findIndex((c) => c.id === id);
+      const j = i + delta;
+      if (i < 0 || j < 0 || j >= arr.length) return null;
+      const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+      return { criteria: arr };
+    });
+  }
+  onDrop(id) {
+    const from = this.state.dragId;
+    this.setState((s) => {
+      if (!from || from === id) return { dragId: null };
+      const arr = s.criteria.slice();
+      const i = arr.findIndex((c) => c.id === from);
+      const j = arr.findIndex((c) => c.id === id);
+      if (i < 0 || j < 0) return { dragId: null };
+      const [item] = arr.splice(i, 1);
+      arr.splice(j, 0, item);
+      return { criteria: arr, dragId: null };
+    });
+  }
+  saveCriteria = () => {
+    this.setState((s) => ({ savedCriteria: JSON.parse(JSON.stringify(s.criteria)), savedGuidance: Object.assign({}, s.guidance) }));
+    this.toast('Criteria saved — new leads use v5');
+  };
+  discardCriteria = () => this.setState((s) => ({ criteria: JSON.parse(JSON.stringify(s.savedCriteria)), guidance: Object.assign({}, s.savedGuidance), editingId: null }));
+  setGuidance(patch) { this.setState((s) => ({ guidance: Object.assign({}, s.guidance, patch) })); }
+
+  /* ---------- render values ---------- */
+  renderVals() {
+    const s = this.state;
+    const isMobile = s.vw < 768;
+    const route = s.route.name;
+    const tab = (n) => ({ bg: route === n ? '#eef2f2' : 'transparent', fg: route === n ? '#0a6a72' : '#59646a' });
+    const tl = tab('leads'), tf = tab('form'), ti = tab('icp');
+
+    const vals = {
+      isMobile: isMobile,
+      isLanding: route === 'landing',
+      isApp: route !== 'landing',
+      isForm: route === 'form',
+      isLeads: route === 'leads',
+      isDetail: route === 'detail',
+      isIcp: route === 'icp',
+      drawer: s.drawer,
+      toggleDrawer: () => this.setState((x) => ({ drawer: !x.drawer })),
+      goHome: () => this.nav('landing'), goForm: () => this.nav('form'),
+      goLeads: () => this.nav('leads'), goIcp: () => this.nav('icp'),
+      tabLeadsBg: tl.bg, tabLeadsFg: tl.fg, tabFormBg: tf.bg, tabFormFg: tf.fg, tabIcpBg: ti.bg, tabIcpFg: ti.fg,
+      toast: s.toast,
+      heroScore: s.heroScore,
+      s96: 96, s78: 78, s18: 18, false: false,
+      stop: (e) => e.stopPropagation(),
+      dialog: !!s.dialog,
+      dialogTitle: s.dialog ? s.dialog.title : '',
+      dialogBody: s.dialog ? s.dialog.body : '',
+      dialogConfirm: s.dialog ? s.dialog.confirm : '',
+      dialogCancel: s.dialog ? s.dialog.cancel : 'Cancel',
+      dialogConfirmBg: s.dialog && s.dialog.tone === 'danger' ? '#9e3327' : '#0a6a72',
+      closeDialog: () => this.setState({ dialog: null }),
+      confirmDialog: () => { const d = s.dialog; this.setState({ dialog: null }); if (d && d.onConfirm) d.onConfirm(); },
+    };
+
+    /* form */
+    vals.formIdle = route === 'form' && s.phase === 'idle';
+    vals.formProcessing = route === 'form' && s.phase === 'processing';
+    vals.formDone = route === 'form' && s.phase === 'done';
+    vals.fName = this.field('fullName');
+    vals.fEmail = this.field('email');
+    vals.fPhone = this.field('phone');
+    vals.fSite = this.field('website');
+    vals.fLi = this.field('linkedin');
+    vals.ccValue = s.cc;
+    vals.onCcChange = (e) => {
+      const cc = e.target.value;
+      this.setState((x) => ({ cc: cc, form: Object.assign({}, x.form, { phone: x.form.phone.trim() ? x.form.phone : cc + ' ' }) }));
+    };
+    vals.siteHint = /^https:\/\//.test(s.form.website) ? s.form.website : null;
+    vals.formError = s.formError;
+    vals.onSubmit = this.submit;
+    vals.resetForm = this.resetForm;
+    vals.setSimScored = () => this.setState({ sim: 'scored' });
+    vals.setSimPartial = () => this.setState({ sim: 'partial' });
+    vals.simScoredBg = s.sim === 'scored' ? '#eef2f2' : '#fff';
+    vals.simScoredFg = s.sim === 'scored' ? '#0a6a72' : '#59646a';
+    vals.simPartialBg = s.sim === 'partial' ? '#eef2f2' : '#fff';
+    vals.simPartialFg = s.sim === 'partial' ? '#0a6a72' : '#59646a';
+    vals.procCompany = this.domain(s.form.website) || 'New lead';
+    vals.steps = s.steps.map((st) => {
+      const done = st.state === 'done', active = st.state === 'active', failed = st.state === 'failed';
+      return {
+        key: st.id, label: st.label, detail: st.detail,
+        glyph: done ? '\u2713' : failed ? '!' : '',
+        ring: done ? '#2c6a4c' : failed ? '#9a6410' : active ? '#0a6a72' : '#dfe3e3',
+        dotBg: done ? '#2c6a4c' : failed ? '#9a6410' : 'transparent',
+        fg: st.state === 'pending' ? '#8b959a' : '#13181a',
+        meta: done ? 'Done' : failed ? 'Unreachable' : active ? 'Reading…' : 'Queued',
+        pct: done || failed ? '100%' : active ? '65%' : '0%',
+        bar: failed ? '#9a6410' : done ? '#2c6a4c' : '#0a6a72',
+      };
+    });
+    const nl = s.newLeadId ? s.leads.find((l) => l.id === s.newLeadId) : null;
+    if (nl) {
+      const b = this.band(nl.icpFitScore);
+      vals.doneTitle = nl.status === 'needs_review' ? 'Scored, with one source missing' : 'Scored ' + nl.icpFitScore + ' out of 10';
+      vals.doneSub = nl.fullName + ' at ' + nl.companyName + ' · scored in ' + (nl.durationMs / 1000).toFixed(1) + 's';
+      vals.doneScore = nl.icpFitScore;
+      vals.doneScoreColor = b.c; vals.doneBand = b.label;
+      vals.doneTicks = this.ticks(nl.icpFitScore);
+      vals.doneCompany = nl.companyName + ' · ' + nl.niche;
+      vals.doneReason = nl.icpFitReason;
+      vals.partialNotice = nl.status === 'needs_review'
+        ? 'We couldn\u2019t reach linkedin.com for ' + nl.companyName + '. Check the URL or try again — everything else on this lead was scored normally.' : null;
+      vals.viewNewLead = () => this.nav('detail', nl.id);
+    } else {
+      vals.doneTitle = ''; vals.doneSub = ''; vals.doneScore = ''; vals.doneScoreColor = '#13181a';
+      vals.doneBand = ''; vals.doneTicks = []; vals.doneCompany = ''; vals.doneReason = '';
+      vals.partialNotice = null; vals.viewNewLead = () => this.nav('leads');
+    }
+    /* ---------- leads grid ---------- */
+    const all = this.filtered();
+    const per = this.perPage();
+    const pages = Math.max(1, Math.ceil(all.length / per));
+    const page = Math.min(s.page, pages - 1);
+    const pageRows = all.slice(page * per, page * per + per);
+    const nicheOpts = [];
+    s.leads.forEach((l) => { const g = l.niche.split(' \u2014 ')[0]; if (!nicheOpts.includes(g)) nicheOpts.push(g); });
+    const sortLabel = { score: 'ICP fit score', date: 'Date added', name: 'Name' }[s.sortKey];
+    const anyHidden = s.hidden.fullName || s.hidden.email || s.hidden.phone;
+    const skel = [];
+    for (let i = 0; i < 6; i++) skel.push({ key: i, w: [62, 48, 70, 55][i % 4] + '%' });
+    vals.g = {
+      loading: s.loading,
+      mobile: isMobile, desktop: !isMobile,
+      rows: pageRows.map((l) => this.rowFor(l)),
+      skeleton: skel,
+      total: s.leads.length,
+      count: all.length,
+      countLabel: all.length === s.leads.length ? s.leads.length + ' leads' : all.length + ' of ' + s.leads.length + ' leads',
+      empty: !s.loading && s.leads.length === 0,
+      filteredEmpty: !s.loading && s.leads.length > 0 && all.length === 0,
+      hasRows: all.length > 0,
+      cellPad: this.props.density === 'Compact' ? '7px 12px' : '12px 12px',
+      search: s.search,
+      onSearch: (e) => { const v = e.target.value; this.setState({ search: v, page: 0 }); },
+      clearSearch: () => this.setState({ search: '', page: 0 }),
+      showName: !s.hidden.fullName, showEmail: !s.hidden.email, showPhone: !s.hidden.phone,
+      hideName: s.hidden.fullName, hideEmail: s.hidden.email, hidePhone: s.hidden.phone,
+      toggleName: () => this.toggleHidden('fullName'),
+      toggleEmail: () => this.toggleHidden('email'),
+      togglePhone: () => this.toggleHidden('phone'),
+      allHidden: anyHidden,
+      contactSwitchBg: anyHidden ? '#0a6a72' : '#d5d9d9',
+      contactKnob: anyHidden ? 'translateX(16px)' : 'translateX(0)',
+      contactLabel: anyHidden ? 'Contact details hidden' : 'Hide contact details',
+      toggleAllContacts: () => this.setAllHidden(!anyHidden),
+      columnsOpen: s.columnsOpen,
+      toggleColumns: () => this.setState((x) => ({ columnsOpen: !x.columnsOpen, filtersOpen: false })),
+      closeColumns: () => this.setState({ columnsOpen: false }),
+      filtersOpen: s.filtersOpen,
+      toggleFilters: () => this.setState((x) => ({ filtersOpen: !x.filtersOpen, columnsOpen: false })),
+      closeFilters: () => this.setState({ filtersOpen: false }),
+      filtersActive: this.filtersActive(),
+      filterCount: (s.niches.length ? 1 : 0) + (s.statuses.length ? 1 : 0) + (s.minScore > 1 ? 1 : 0) + (s.search.trim() ? 1 : 0),
+      clearFilters: this.clearFilters,
+      minScore: s.minScore,
+      minScoreLabel: s.minScore === 1 ? 'Any score' : s.minScore + ' and above',
+      onMinScore: (e) => { const v = Number(e.target.value); this.setState({ minScore: v, page: 0 }); },
+      niches: nicheOpts.map((n) => ({
+        key: n, label: n, on: s.niches.includes(n),
+        bg: s.niches.includes(n) ? '#0a6a72' : '#fff',
+        fg: s.niches.includes(n) ? '#fff' : '#59646a',
+        toggle: () => this.toggleIn('niches', n),
+      })),
+      statuses: ['scored', 'processing', 'needs_review'].map((k) => ({
+        key: k, label: STATUS[k].label, on: s.statuses.includes(k),
+        bg: s.statuses.includes(k) ? '#0a6a72' : '#fff',
+        fg: s.statuses.includes(k) ? '#fff' : '#59646a',
+        toggle: () => this.toggleIn('statuses', k),
+      })),
+      sortLabel: sortLabel,
+      sortDirLabel: s.sortDir === 'desc' ? 'High to low' : 'Low to high',
+      sortValue: s.sortKey,
+      onSort: (e) => this.sortBy(e.target.value),
+      sortScore: () => this.sortBy('score'), sortName: () => this.sortBy('name'), sortDate: () => this.sortBy('date'),
+      scoreArrow: s.sortKey === 'score' ? (s.sortDir === 'desc' ? '\u2193' : '\u2191') : '',
+      nameArrow: s.sortKey === 'name' ? (s.sortDir === 'desc' ? '\u2193' : '\u2191') : '',
+      dateArrow: s.sortKey === 'date' ? (s.sortDir === 'desc' ? '\u2193' : '\u2191') : '',
+      selectedCount: Object.keys(s.selected).length,
+      hasSelection: Object.keys(s.selected).length > 0,
+      selectionLabel: Object.keys(s.selected).length + ' selected',
+      copySelected: this.copySelected,
+      clearSelection: () => this.setState({ selected: {} }),
+      allSelected: pageRows.length > 0 && pageRows.every((l) => s.selected[l.id]),
+      toggleAll: () => this.setState((x) => {
+        const on = pageRows.every((l) => x.selected[l.id]);
+        const sel = Object.assign({}, x.selected);
+        pageRows.forEach((l) => { if (on) delete sel[l.id]; else sel[l.id] = true; });
+        return { selected: sel };
+      }),
+      page: page + 1, pages: pages,
+      pageLabel: 'Page ' + (page + 1) + ' of ' + pages,
+      rangeLabel: all.length === 0 ? '' : (page * per + 1) + '\u2013' + Math.min(all.length, page * per + per) + ' of ' + all.length,
+      canPrev: page > 0, canNext: page < pages - 1,
+      prevOpacity: page > 0 ? '1' : '0.4', nextOpacity: page < pages - 1 ? '1' : '0.4',
+      prev: () => this.setState((x) => ({ page: Math.max(0, x.page - 1) })),
+      next: () => this.setState((x) => ({ page: Math.min(pages - 1, x.page + 1) })),
+      goForm: () => this.nav('form'),
+    };
+
+    /* ---------- lead detail ---------- */
+    const L = route === 'detail' ? this.detailLead() : null;
+    if (L) {
+      const b = this.band(L.icpFitScore);
+      const totalW = (L.criteriaResults || []).filter((c) => c.type !== 'disqualifier').reduce((a, c) => a + (c.weight || 0), 0) || 1;
+      const act = s.activeCriterion;
+      const evList = L.evidence || [];
+      vals.d = {
+        found: true,
+        processing: L.status === 'processing',
+        scored: L.status !== 'processing',
+        partial: !!L.unreadableSource,
+        partialNotice: L.unreadableSource === 'linkedin'
+          ? 'We couldn\u2019t reach the LinkedIn page for ' + L.companyName + '. Check the URL or re-score — everything the website supports was scored normally.'
+          : L.unreadableSource ? 'We couldn\u2019t reach ' + this.domain(L.companyWebsite) + '. Check the URL or re-score — the LinkedIn evidence was scored normally.' : null,
+        name: L.fullName, company: L.companyName, role: L.role, niche: L.niche, service: L.primaryService,
+        email: L.email, phone: L.phone, website: L.companyWebsite, domain: this.domain(L.companyWebsite),
+        linkedin: L.linkedinUrl, linkedinLabel: this.domain(L.linkedinUrl),
+        showName: !s.hidden.fullName, showEmail: !s.hidden.email, showPhone: !s.hidden.phone,
+        score: L.icpFitScore, scoreColor: b.c, band: b.label, ticks: this.ticks(L.icpFitScore),
+        reason: L.icpFitReason,
+        icebreaker: L.icebreaker,
+        charCount: (L.icebreaker || '').length + ' characters',
+        copyLabel: s.copied === 'detail-' + L.id ? 'Icebreaker copied' : 'Copy icebreaker',
+        copyBg: s.copied === 'detail-' + L.id ? '#2c6a4c' : '#0a6a72',
+        onCopy: () => this.copyText(L.icebreaker || '', 'detail-' + L.id),
+        toneNote: 'Tone: ' + s.guidance.tone + ' · max ' + s.guidance.maxLength + ' characters',
+        back: () => this.nav('leads'),
+        backLabel: this.filtersActive() ? 'Back to leads (filters kept)' : 'Back to leads',
+        rescore: this.rescore,
+        busy: s.detailBusy,
+        rescoreLabel: s.detailBusy ? 'Re-scoring\u2026' : 'Re-score lead',
+        statusLabel: STATUS[L.status].label, statusFg: STATUS[L.status].fg, statusBg: STATUS[L.status].bg,
+        gridStyle: isMobile
+          ? 'display:grid;gap:16px;grid-template-columns:1fr;grid-template-areas:"score" "ice" "crit" "ev" "meta"'
+          : 'display:grid;gap:16px;grid-template-columns:minmax(320px,0.85fr) 1.15fr;grid-template-areas:"score ice" "crit ev" "crit meta"',
+        criteria: (L.criteriaResults || []).map((c) => {
+          const isDq = c.type === 'disqualifier';
+          const factor = c.result === 'met' ? 1 : c.result === 'partial' ? 0.5 : 0;
+          const max = isDq ? 0 : (c.weight || 0) / totalW * 9;
+          const got = max * factor;
+          const on = act === c.criterion;
+          const rc = c.result === 'met' ? (isDq ? '#9e3327' : '#2c6a4c') : c.result === 'partial' ? '#9a6410' : c.result === 'unknown' ? '#8b959a' : '#59646a';
+          return {
+            key: c.criterion, name: c.criterion, type: TYPE_LABEL[c.type], weight: c.weight ? 'w' + c.weight : '—',
+            resultLabel: isDq && c.result === 'met' ? 'Triggered' : RESULT_LABEL[c.result],
+            resultColor: rc,
+            resultBg: c.result === 'met' ? (isDq ? '#f8ece9' : '#e9f2ec') : c.result === 'partial' ? '#fdf7ec' : '#f4f5f5',
+            note: c.note,
+            points: isDq ? (c.result === 'met' ? 'Forces score 2' : 'No effect') : '+' + got.toFixed(1) + ' of ' + max.toFixed(1),
+            unknown: c.result === 'unknown',
+            active: on,
+            bg: on ? '#f2f8f8' : '#fff',
+            edge: on ? '#0a6a72' : 'transparent',
+            evCount: evList.filter((e) => (e.supports || []).includes(c.criterion)).length,
+            evLabel: evList.filter((e) => (e.supports || []).includes(c.criterion)).length === 1 ? '1 snippet' : evList.filter((e) => (e.supports || []).includes(c.criterion)).length + ' snippets',
+            select: () => this.setState((x) => ({ activeCriterion: x.activeCriterion === c.criterion ? null : c.criterion })),
+          };
+        }),
+        evidence: evList.map((e, i) => {
+          const on = act && (e.supports || []).includes(act);
+          return {
+            key: i, source: e.source === 'website' ? 'Website' : 'LinkedIn',
+            srcFg: e.source === 'website' ? '#0a6a72' : '#3c5a8a',
+            srcBg: e.source === 'website' ? '#eaf2f2' : '#eef1f7',
+            location: e.location, snippet: e.snippet,
+            supports: (e.supports || []).join(', '),
+            active: !!on,
+            bg: on ? '#f2f8f8' : '#fff',
+            edge: on ? '#0a6a72' : '#e8eaea',
+            select: () => this.setState((x) => {
+              const first = (e.supports || [])[0] || null;
+              return { activeCriterion: x.activeCriterion === first ? null : first };
+            }),
+          };
+        }),
+        activeLabel: act ? 'Showing evidence for “' + act + '”' : 'Select a criterion to see the snippets behind it',
+        hasActive: !!act,
+        clearActive: () => this.setState({ activeCriterion: null }),
+        scoredAt: this.fmtDate(L.scoredAt || L.submittedAt) + ' at ' + this.fmtTime(L.scoredAt || L.submittedAt),
+        version: 'ICP criteria ' + (L.criteriaVersion || 'v4'),
+        duration: L.durationMs ? (L.durationMs / 1000).toFixed(1) + 's' : '—',
+        evCountLabel: evList.length + ' snippets kept',
+      };
+    } else {
+      vals.d = { found: false, gridStyle: 'display:grid', criteria: [], evidence: [], back: () => this.nav('leads') };
+    }
+
+    /* ---------- ICP criteria ---------- */
+    const budget = this.weightBudget();
+    const sample = s.sample;
+    const results = sample ? sample.results : {};
+    const pv = this.scoreFrom(s.criteria, results);
+    const pb = this.band(pv.score);
+    const enabledCount = s.criteria.filter((c) => c.enabled).length;
+    const dqs = s.criteria.filter((c) => c.enabled && c.type === 'disqualifier');
+    const editRow = (c) => {
+      const isDq = c.type === 'disqualifier';
+      const pts = isDq || !budget ? 0 : (c.weight || 0) / budget * 9;
+      return {
+        key: c.id, id: c.id, name: c.name, description: c.description,
+        type: c.type, typeLabel: TYPE_LABEL[c.type],
+        weight: c.weight === null || c.weight === undefined ? '' : String(c.weight),
+        weightLabel: isDq ? 'n/a' : 'w' + (c.weight || 0),
+        source: c.source, sourceLabel: SOURCE_LABEL[c.source],
+        enabled: c.enabled, isDq: isDq, isMust: c.type === 'must_have',
+        meta: TYPE_LABEL[c.type] + ' · ' + SOURCE_LABEL[c.source],
+        points: isDq ? 'Forces a score of 2 when met' : c.enabled ? 'Worth up to ' + pts.toFixed(1) + ' of 10 points' : 'Disabled — no effect on scores',
+        rowBg: c.enabled ? '#fff' : '#fafbfb',
+        nameColor: isDq ? '#9e3327' : c.enabled ? '#13181a' : '#8b959a',
+        editing: s.editingId === c.id,
+        inline: !isMobile && s.editingId === c.id,
+        editLabel: s.editingId === c.id ? 'Done' : 'Edit',
+        dragging: s.dragId === c.id,
+        rowOpacity: s.dragId === c.id ? '0.5' : '1',
+        switchBg: c.enabled ? '#0a6a72' : '#d5d9d9',
+        knob: c.enabled ? 'translateX(16px)' : 'translateX(0)',
+        onName: (e) => this.setCrit(c.id, { name: e.target.value }),
+        onDesc: (e) => this.setCrit(c.id, { description: e.target.value }),
+        onType: (e) => { const v = e.target.value; this.setCrit(c.id, { type: v, weight: v === 'disqualifier' ? null : (c.weight || 3) }); },
+        onWeight: (e) => this.setCrit(c.id, { weight: Number(e.target.value) }),
+        onSource: (e) => this.setCrit(c.id, { source: e.target.value }),
+        onToggle: () => this.setCrit(c.id, { enabled: !c.enabled }),
+        onEdit: () => this.setState((x) => ({ editingId: x.editingId === c.id ? null : c.id })),
+        onClose: () => this.setState({ editingId: null }),
+        onDup: () => this.duplicate(c.id),
+        onDel: () => this.askDelete(c),
+        onUp: () => this.move(c.id, -1),
+        onDown: () => this.move(c.id, 1),
+        onDragStart: () => this.setState({ dragId: c.id }),
+        onDragOver: (e) => e.preventDefault(),
+        onDrop: () => this.onDrop(c.id),
+      };
+    };
+    const editing = s.criteria.find((c) => c.id === s.editingId);
+    vals.k = {
+      mobile: isMobile, desktop: !isMobile,
+      loading: s.loading,
+      rows: s.criteria.map(editRow),
+      empty: !s.loading && s.criteria.length === 0,
+      hasRows: s.criteria.length > 0,
+      budget: budget,
+      budgetLabel: budget + ' points of weight across ' + enabledCount + ' enabled criteria',
+      pointNote: budget ? 'Each weight point is worth ' + (9 / budget).toFixed(2) + ' of the 1\u201310 scale. A lead that meets nothing scores 1.' : 'Add a weighted criterion to build the scale.',
+      dqNote: dqs.length ? (dqs.length === 1 ? 'One disqualifier is active: ' : dqs.length + ' disqualifiers are active: ') + dqs.map((c) => c.name).join(', ') + '. Any one of them forces a score of 2, whatever the rest of the criteria say.' : 'No disqualifiers are active. Every criterion contributes proportionally.',
+      addCriterion: this.addCriterion,
+      starters: (s.starters || []).map((st, i) => ({ key: i, name: st.name, meta: TYPE_LABEL[st.type] + (st.weight ? ' · w' + st.weight : ''), add: () => this.addStarter(st) })),
+      dirty: this.dirty(),
+      save: this.saveCriteria, discard: this.discardCriteria,
+      tone: s.guidance.tone,
+      tones: ['Direct', 'Warm', 'Formal'].map((t) => ({
+        key: t, label: t, on: s.guidance.tone === t,
+        bg: s.guidance.tone === t ? '#0a6a72' : '#fff',
+        fg: s.guidance.tone === t ? '#fff' : '#59646a',
+        set: () => this.setGuidance({ tone: t }),
+      })),
+      maxLength: s.guidance.maxLength,
+      onMaxLength: (e) => this.setGuidance({ maxLength: Number(e.target.value) }),
+      instruction: s.guidance.instruction,
+      onInstruction: (e) => this.setGuidance({ instruction: e.target.value }),
+      pvScore: pv.score, pvColor: pb.c, pvBand: pb.label, pvTicks: this.ticks(pv.score),
+      pvCompany: sample ? sample.companyName + ' · ' + sample.niche : '—',
+      pvReason: pv.dq
+        ? 'Disqualified by “' + pv.dq + '”. The rest of the criteria are ignored.'
+        : sample ? s.criteria.filter((c) => c.enabled && c.type !== 'disqualifier' && results[c.name] === 'met').length + ' of ' + s.criteria.filter((c) => c.enabled && c.type !== 'disqualifier').length + ' weighted criteria met outright, ' + s.criteria.filter((c) => c.enabled && c.type !== 'disqualifier' && results[c.name] === 'partial').length + ' partially.' : '',
+      pvLines: s.criteria.filter((c) => c.enabled).map((c) => {
+        const r = results[c.name] || 'unknown';
+        return {
+          key: c.id, name: c.name,
+          label: c.type === 'disqualifier' ? (r === 'met' ? 'Triggered' : 'Clear') : RESULT_LABEL[r],
+          color: r === 'met' ? (c.type === 'disqualifier' ? '#9e3327' : '#2c6a4c') : r === 'partial' ? '#9a6410' : '#8b959a',
+        };
+      }),
+      sheet: isMobile && !!editing,
+      editRow: editing ? editRow(editing) : null,
+      closeSheet: () => this.setState({ editingId: null }),
+    };
+
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

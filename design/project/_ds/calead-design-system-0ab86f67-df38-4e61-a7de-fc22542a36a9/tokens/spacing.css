@@ -1,0 +1,27 @@
+/* 4px base, with two off-grid steps kept deliberately (2px hairline gap, 6px chip inset). */
+:root {
+  --space-0: 0px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --gutter-card: var(--space-24);
+  --gutter-panel: var(--space-32);
+  --gutter-section: var(--space-96);
+  --gutter-section-tight: var(--space-56);
+  --page-max: 1240px;
+  --prose-max: 62ch; /* @kind spacing */
+  --sidebar-w: 248px;
+  --topbar-h: 64px;
+}

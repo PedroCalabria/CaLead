@@ -1,0 +1,233 @@
+/* CaLead design system tokens — synced verbatim from Claude Design.
+   Source: _ds/calead-design-system-0ab86f67-df38-4e61-a7de-fc22542a36a9/tokens/
+   Edit in Claude Design and re-sync; do not hand-edit values here. */
+
+/* ---------- colors.css ---------- */
+/* CaLead color system — cool architectural neutrals + one signal accent.
+   Neutrals do the work; soft blue is a signal, never a surface. */
+:root {
+  /* Stone / graphite ramp (base) */
+  --stone-000: #FFFFFF;
+  --stone-050: #FAFAF8;
+  --stone-100: #F2F2EE;
+  --stone-200: #E6E6E0;
+  --stone-300: #D2D2CA;
+  --stone-400: #A9A9A0;
+  --stone-500: #7C7C74;
+  --stone-600: #565651;
+  --stone-700: #3A3A36;
+  --stone-800: #232322;
+  --stone-900: #141414;
+  --stone-950: #0B0B0B;
+
+  /* Signal accent */
+  --blue-100: #EEF3FF;
+  --blue-200: #D8E4FF;
+  --blue-300: #BCD1FB;
+  --blue-400: #9BBBF7;
+  --blue-500: #6F9DE8;
+  --blue-600: #4A79C4;
+  --blue-700: #2D5490;
+
+  /* Semantic hues (muted, cool) */
+  --info-500: #2C5CE6;
+  --info-100: #E4EAFF;
+  --positive-500: #1E7A52;
+  --positive-100: #DDF2E7;
+  --warn-500: #A56B12;
+  --warn-100: #FBEED6;
+  --critical-500: #B4321F;
+  --critical-100: #FCE5E0;
+
+  /* ---- Semantic aliases ---- */
+  --surface-page: var(--stone-050);
+  --surface-card: var(--stone-000);
+  --surface-sunken: var(--stone-100);
+  --surface-inverse: var(--stone-950);
+  --surface-inverse-raised: var(--stone-800);
+  --surface-accent: var(--blue-400);
+  --surface-accent-soft: var(--blue-100);
+  --surface-hover: var(--stone-100);
+  --surface-active: var(--stone-200);
+
+  --text-strong: var(--stone-950);
+  --text-body: var(--stone-700);
+  --text-muted: var(--stone-500);
+  --text-faint: var(--stone-400);
+  --text-on-inverse: var(--stone-050);
+  --text-on-inverse-muted: var(--stone-400);
+  --text-on-accent: var(--stone-950);
+  --text-link: var(--stone-950);
+
+  --border-hairline: var(--stone-200);
+  --border-default: var(--stone-300);
+  --border-strong: var(--stone-900);
+  --border-inverse: rgba(255, 255, 255, 0.14);
+  --border-focus: var(--stone-950);
+
+  --score-hot: var(--blue-500);
+  --score-warm: var(--stone-400);
+  --score-cold: var(--stone-200);
+}
+
+/* ---------- typography.css ---------- */
+/* CaLead typography — all grotesk. Geist sets structure, Public Sans carries prose,
+   IBM Plex Mono marks machine output (scores, timestamps, field labels). */
+:root {
+  --font-display: "Geist", "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Scale — 1.25 major third, tightened at the top */
+  --size-display-xl: 76px;
+  --size-display-l: 56px;
+  --size-display-m: 40px;
+  --size-heading-l: 30px;
+  --size-heading-m: 23px;
+  --size-heading-s: 18px;
+  --size-body-l: 17px;
+  --size-body-m: 15px;
+  --size-body-s: 13px;
+  --size-label: 12px;
+  --size-micro: 11px;
+
+  --leading-display: 1.02;
+  --leading-heading: 1.16;
+  --leading-body: 1.55;
+  --leading-tight: 1.3;
+
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.02em;
+  --tracking-body: -0.005em;
+  --tracking-label: 0.09em;
+  --tracking-mono: 0.02em;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Semantic type roles */
+  --type-hero: var(--weight-medium) var(--size-display-xl) / var(--leading-display) var(--font-display);
+  --type-display: var(--weight-medium) var(--size-display-l) / var(--leading-display) var(--font-display);
+  --type-h1: var(--weight-medium) var(--size-display-m) / var(--leading-heading) var(--font-display);
+  --type-h2: var(--weight-medium) var(--size-heading-l) / var(--leading-heading) var(--font-display);
+  --type-h3: var(--weight-medium) var(--size-heading-m) / var(--leading-heading) var(--font-display);
+  --type-h4: var(--weight-semibold) var(--size-heading-s) / var(--leading-tight) var(--font-display);
+  --type-body: var(--weight-regular) var(--size-body-m) / var(--leading-body) var(--font-text);
+  --type-body-lead: var(--weight-regular) var(--size-body-l) / var(--leading-body) var(--font-text);
+  --type-body-small: var(--weight-regular) var(--size-body-s) / var(--leading-body) var(--font-text);
+  --type-ui: var(--weight-medium) var(--size-body-m) / 1.2 var(--font-display);
+  --type-label: var(--weight-medium) var(--size-label) / 1.2 var(--font-mono);
+  --type-data: var(--weight-medium) var(--size-body-s) / 1.35 var(--font-mono);
+}
+
+/* ---------- spacing.css ---------- */
+/* 4px base, with two off-grid steps kept deliberately (2px hairline gap, 6px chip inset). */
+:root {
+  --space-0: 0px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --gutter-card: var(--space-24);
+  --gutter-panel: var(--space-32);
+  --gutter-section: var(--space-96);
+  --gutter-section-tight: var(--space-56);
+  --page-max: 1240px;
+  --prose-max: 62ch; /* @kind spacing */
+  --sidebar-w: 248px;
+  --topbar-h: 64px;
+}
+
+/* ---------- radius.css ---------- */
+/* Architectural corners: mostly small radii, pills only for chips and icon buttons. */
+:root {
+  --radius-0: 0px;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+  --radius-pill: 999px;
+
+  --radius-control: var(--radius-6);
+  --radius-card: var(--radius-10);
+  --radius-panel: var(--radius-14);
+  --radius-media: var(--radius-14);
+  --radius-chip: var(--radius-pill);
+
+  --border-width-hairline: 1px;
+  --border-width-strong: 1.5px;
+}
+
+/* ---------- elevation.css ---------- */
+/* Shadows are cool-toned and shallow. Borders carry most of the separation;
+   shadow only appears on floating things (menus, dialogs, dragged cards). */
+:root {
+  --shadow-none: none;
+  --shadow-hairline: 0 0 0 1px var(--border-hairline);
+  --shadow-raised: 0 1px 2px rgba(11, 11, 11, 0.05), 0 0 0 1px rgba(11, 11, 11, 0.05);
+  --shadow-float: 0 8px 24px -8px rgba(11, 11, 11, 0.16), 0 0 0 1px rgba(11, 11, 11, 0.06);
+  --shadow-dialog: 0 32px 64px -24px rgba(11, 11, 11, 0.28), 0 0 0 1px rgba(11, 11, 11, 0.08);
+  --shadow-inset-well: inset 0 1px 2px rgba(11, 11, 11, 0.06);
+  --focus-ring: 0 0 0 2px var(--surface-page), 0 0 0 4px var(--border-focus);
+  --focus-ring-inverse: 0 0 0 2px var(--stone-950), 0 0 0 4px var(--blue-400);
+
+  /* Protection gradient for text over imagery */
+  --scrim-bottom: linear-gradient(to top, rgba(11, 11, 11, 0.78) 0%, rgba(11, 11, 11, 0.35) 42%, rgba(11, 11, 11, 0) 100%); /* @kind color */
+  --scrim-flat: rgba(11, 11, 11, 0.42);
+  --glass-panel: rgba(250, 250, 248, 0.72);
+  --glass-panel-dark: rgba(11, 11, 11, 0.52);
+  --blur-panel: blur(18px) saturate(115%); /* @kind other */
+}
+
+/* ---------- motion.css ---------- */
+/* Motion is short and mechanical. Nothing bounces; nothing overshoots. */
+:root {
+  --dur-instant: 80ms; /* @kind other */
+  --dur-fast: 140ms; /* @kind other */
+  --dur-base: 220ms; /* @kind other */
+  --dur-slow: 380ms; /* @kind other */
+  --dur-reveal: 620ms; /* @kind other */
+
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-in: cubic-bezier(0.5, 0, 1, 1); /* @kind other */
+  --ease-linear: linear; /* @kind other */
+
+  --transition-control: color var(--dur-fast) var(--ease-standard), background-color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard); /* @kind other */
+  --transition-surface: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); /* @kind other */
+  --press-scale: 0.985; /* @kind other */
+}
+
+/* ---------- base.css ---------- */
+/* Minimal global base. Consumers get resets, type defaults and link styling. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface-page); color: var(--text-body); font: var(--type-body); letter-spacing: var(--tracking-body); text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--text-strong); font-family: var(--font-display); letter-spacing: var(--tracking-heading); font-weight: var(--weight-medium); }
+p { margin: 0; }
+a { color: var(--text-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--stone-300); transition: var(--transition-control); }
+a:hover { text-decoration-color: var(--blue-500); }
+a:active { color: var(--stone-700); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-2); }
+button { font: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--blue-300); color: var(--stone-950); }
+.ca-mono-label { font: var(--type-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted); }
+.ca-hairline { border: 0; border-top: 1px solid var(--border-hairline); margin: 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
