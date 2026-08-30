@@ -139,9 +139,12 @@ LinkedIn scrapes report into `li`. Don't add a fourth step.
 
 ## Domain gotchas
 
-- **Scores are 1–10.** `scoreFrom` clamps to `Math.max(1, Math.min(10, ...))`, `band()` cuts
-  at ≥8 Strong / ≥5 Possible, `ticks()` renders ten segments. The design-system readme says
-  "integers 0–100" — that is **not** what the code or the UI does. Keep 1–10.
+- **Scores are 0–100 everywhere** — app, landing, and design system now agree. `scoreFrom`
+  returns `Math.round(100 * earned / total)`, `band()` cuts at ≥80 Strong / ≥50 Possible,
+  and `ticks()` renders ten segments worth ten points each. A met disqualifier forces
+  `DISQUALIFIED_SCORE` (20). `null` means "not scored" and is distinct from `0`.
+  Migrated from 1–10 in Aug 2026; `scripts/migrate-scores.ts` recomputes stored leads from
+  their saved `criteriaResults` and is idempotent.
 - **`scoreFrom` keys results by `criterion.name`, not `id`.** The model returns criterion
   names, and they must match the saved criteria exactly. `verify.ts` drops mismatches; if
   scores look wrong, check name drift first.

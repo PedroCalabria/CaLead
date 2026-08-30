@@ -57,7 +57,7 @@ export interface ConfirmDialog {
 
 const DEFAULT_FILTERS: GridFilters = {
   search: "",
-  minScore: 1,
+  minScore: 0,
   niches: [],
   statuses: [],
   sortKey: "score",
@@ -248,7 +248,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     !!filters.search.trim() ||
     filters.niches.length > 0 ||
     filters.statuses.length > 0 ||
-    filters.minScore > 1;
+    filters.minScore > 0;
 
   const anyHidden = hidden.fullName || hidden.email || hidden.phone;
 

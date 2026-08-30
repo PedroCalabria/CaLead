@@ -58,7 +58,7 @@ function buildLead(f: LeadSubmission, partial: boolean): Lead {
     role: "—",
     niche: "B2B SaaS — unclassified",
     primaryService: `Read from ${dom} — homepage and pricing`,
-    icpFitScore: partial ? 6 : 8,
+    icpFitScore: partial ? 64 : 82,
     status: partial ? "needs_review" : "scored",
     unreadableSource: partial ? "linkedin" : null,
     scoredAt: new Date().toISOString(),

@@ -196,7 +196,7 @@ export default function LeadDetailPage() {
                 }}
               >
                 {lead.icpFitScore}
-                <span className="text-[20px] text-[var(--app-faint)]">/10</span>
+                <span className="text-[20px] text-[var(--app-faint)]">/100</span>
               </div>
               <ScoreTicks score={lead.icpFitScore} width={6} height={56} gap={3} />
             </div>

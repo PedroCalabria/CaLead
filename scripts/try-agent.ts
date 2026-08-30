@@ -63,7 +63,7 @@ async function main() {
   console.log(`  Role:      ${lead.role}`);
   console.log(`  Niche:     ${lead.niche}`);
   console.log(`  Service:   ${lead.primaryService}`);
-  console.log(`  Score:     ${lead.icpFitScore}/10   status: ${lead.status}${lead.disqualified ? "  DISQUALIFIED" : ""}`);
+  console.log(`  Score:     ${lead.icpFitScore}/100  status: ${lead.status}${lead.disqualified ? "  DISQUALIFIED" : ""}`);
   console.log(`  Reason:    ${lead.icpFitReason}`);
 
   console.log("\n─── criteria ───");

@@ -11,7 +11,8 @@
     "try-agent": "tsx scripts/try-agent.ts",
     "seed": "tsx scripts/seed.ts",
     "db:push": "drizzle-kit push",
-    "check": "tsx scripts/check-setup.ts"
+    "check": "tsx scripts/check-setup.ts",
+    "migrate-scores": "tsx scripts/migrate-scores.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.57",

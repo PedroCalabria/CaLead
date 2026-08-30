@@ -131,10 +131,8 @@ export default function SubmitPage() {
           cc={cc}
           onCc={(value) => {
             setCc(value);
-            setForm((prev) => ({
-              ...prev,
-              phone: prev.phone.trim() ? prev.phone : `${value} `,
-            }));
+            const rest = form.phone.trim().replace(/^\+\d+[\s-]*/, "");
+            onChange("phone", rest ? `${value} ${rest}` : `${value} `);
           }}
           onChange={onChange}
           onBlur={onBlur}
@@ -482,7 +480,7 @@ function Done({
           letterSpacing: "-0.01em",
         }}
       >
-        {partial ? "Scored, with one source missing" : `Scored ${lead.icpFitScore} out of 10`}
+        {partial ? "Scored, with one source missing" : `Scored ${lead.icpFitScore} out of 100`}
       </h1>
       <p className="mt-2.5 mb-6 text-[var(--app-dim)]">
         {lead.fullName} at {lead.companyName} · scored in{" "}
@@ -512,7 +510,7 @@ function Done({
               }}
             >
               {lead.icpFitScore}
-              <span className="text-[15px] text-[var(--app-faint)]">/10</span>
+              <span className="text-[15px] text-[var(--app-faint)]">/100</span>
             </div>
             <div className="text-xs font-medium" style={{ color: b.color }}>
               {b.label}

@@ -69,7 +69,7 @@ async function main() {
       await saveScrapes(leadId, scrapes);
       await finishLead(leadId, lead, icp);
       done++;
-      console.log(`  ok   ${target.website.padEnd(28)} score ${lead.icpFitScore}/10  ${lead.status}`);
+      console.log(`  ok   ${target.website.padEnd(28)} score ${lead.icpFitScore}/100 ${lead.status}`);
     } catch (error) {
       console.log(`  FAIL ${target.website.padEnd(28)} ${error instanceof Error ? error.message : error}`);
     }
