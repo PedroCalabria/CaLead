@@ -5,9 +5,9 @@ import { StoreProvider } from "@/state/store";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Icebreak — lead qualification and ice breakers for outbound teams",
+  title: "CaLead — lead qualification and ice breakers for outbound teams",
   description:
-    "Icebreak reads the company website and the contact's LinkedIn, scores the lead against the criteria your team defined, shows the evidence behind the score, and writes the opener your rep uses on the first touch.",
+    "CaLead reads the company website and the contact's LinkedIn, scores the lead against the criteria your team defined, shows the evidence behind the score, and writes the opener your rep uses on the first touch.",
 };
 
 export const viewport: Viewport = {

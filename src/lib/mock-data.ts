@@ -1,4 +1,4 @@
-// Icebreak — seed data for the interface.
+// CaLead — seed data for the interface.
 // Ported verbatim from the Claude Design prototype (mock-data.js).
 // Stage 2 replaces this module with the scraping + scoring API.
 import type {

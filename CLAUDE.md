@@ -4,7 +4,7 @@ Guidance for Claude Code working in this repository.
 
 ## What this is
 
-CaLead (product name **Icebreak**) is a lead-qualification platform for SDR teams. An SDR
+CaLead is a lead-qualification platform for SDR teams. An SDR
 pastes a lead's contact details, company website, and LinkedIn URL. The system reads both
 sources, scores the lead against the team's ICP criteria, shows the evidence behind the
 score, and writes the icebreaker used for first contact.

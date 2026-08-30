@@ -17,7 +17,7 @@ const STEPS: { icon: IconName; index: string; title: string; body: string }[] = 
   {
     icon: "sliders-horizontal",
     index: "02",
-    title: "Icebreak scores the lead against your ICP",
+    title: "CaLead scores the lead against your ICP",
     body: "Each criterion is checked against a specific page or section, and the snippet is kept.",
   },
   {
@@ -79,7 +79,7 @@ export default function LandingPage() {
                 Know if a lead is worth your time, and what to say to them
               </h1>
               <p className="type-body-lead max-w-[52ch] text-stone-400">
-                Icebreak reads the company website and the contact&rsquo;s LinkedIn, scores
+                CaLead reads the company website and the contact&rsquo;s LinkedIn, scores
                 the lead against the criteria your team defined, shows the evidence behind
                 the score, and writes the opener your rep uses on the first touch.
               </p>
@@ -379,7 +379,7 @@ export default function LandingPage() {
                 letterSpacing: "-0.035em",
               }}
             >
-              Icebreak
+              CaLead
             </span>
             <span className="type-body-small text-stone-400">
               Lead qualification and ice breakers for outbound teams.
@@ -410,7 +410,7 @@ export default function LandingPage() {
 
           <div className="grid gap-2.5">
             <span className="type-label !text-stone-500">Contact</span>
-            <span className="type-body-small text-stone-400">hello@icebreak.example</span>
+            <span className="type-body-small text-stone-400">hello@calead.example</span>
             <span className="type-body-small text-stone-400">+1 (415) 555-0100</span>
           </div>
         </div>
