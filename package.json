@@ -12,7 +12,8 @@
     "seed": "tsx scripts/seed.ts",
     "db:push": "drizzle-kit push",
     "check": "tsx scripts/check-setup.ts",
-    "migrate-scores": "tsx scripts/migrate-scores.ts"
+    "migrate-scores": "tsx scripts/migrate-scores.ts",
+    "shots": "tsx scripts/shots.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.57",
@@ -36,6 +37,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.3.3",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.13",
     "typescript": "^5.9.0"
